@@ -6,10 +6,14 @@
     <color name="gray2">#797979</color>
     <color name="gray3">#a9a9a9</color>
     <color name="gray4">#d9d9d9</color>
+    <color name="gray5">#E9E9E9</color>
     <color name="primary1">#129575</color>
     <color name="primary2">#AFD3CA</color>
     <color name="secondary1">#FF9C00</color>
     <color name="secondary2">#FFBA4D</color>
+    <color name="secondary3">#FAFFFDAF</color>
     <color name="warning">#fd3654</color>
     <color name="success">#31b057</color>
+    <color name="blue">#FA70C1FF</color>
+
 </resources>

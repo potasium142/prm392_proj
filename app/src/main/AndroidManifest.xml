@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PRM392_Proj"
         tools:targetApi="31">
+        <activity android:name=".activities.RecipeProcedure" />
+
+        <activity
+            android:name=".activities.RecipeIngredient"
+            android:exported="false"/>
         <activity
             android:name=".activities.SignUp"
             android:exported="false" />
