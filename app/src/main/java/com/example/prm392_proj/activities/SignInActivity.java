@@ -10,7 +10,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.prm392_proj.R;
 
-public class SignIn extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
