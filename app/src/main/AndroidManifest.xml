@@ -21,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.BookMark" />
         <activity android:name=".activities.RecipeProcedure" />
         <activity
             android:name=".activities.RecipeIngredient"

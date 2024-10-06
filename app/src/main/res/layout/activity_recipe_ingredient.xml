@@ -99,26 +99,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_time"
-                    android:paddingHorizontal="3dp" />
+                    android:paddingHorizontal="3dp"
+                    app:tint="@color/white" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="20"
                     android:textSize="17sp"
-                    android:paddingHorizontal="3dp" />
+                    android:paddingHorizontal="3dp"
+                    android:textColor="@color/white" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="min"
                     android:paddingLeft="3dp"
-                    android:paddingRight="10dp" />
+                    android:paddingRight="10dp"
+                    android:textColor="@color/white" />
 
                 <ImageView
+                    android:id="@+id/iconBookMark"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:background="@drawable/rounded_corner_big_image"
+                    android:background="@drawable/border_to_be_circle"
                     android:backgroundTint="@color/white"
                     android:src="@drawable/ic_bookmark"
                     android:paddingHorizontal="3dp"

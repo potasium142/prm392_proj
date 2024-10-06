@@ -35,6 +35,8 @@ android {
 }
 
 dependencies {
+    implementation ("androidx.room:room-runtime:2.5.2")
+    implementation ("com.google.code.gson:gson:2.8.9")
     implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation(libs.activity)
     implementation(libs.constraintlayout)
@@ -49,6 +51,7 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     compileOnly(libs.projectlombok.lombok)
+    annotationProcessor ("androidx.room:room-compiler:2.5.2")
     annotationProcessor(libs.projectlombok.lombok)
     annotationProcessor(libs.room.compiler)
 }
