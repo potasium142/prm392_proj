@@ -1,4 +1,4 @@
-package entities.models;
+package database.entities.models;
 
 import androidx.room.Entity;
 
@@ -13,7 +13,7 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-@Entity(primaryKeys = {"userId", "recipeId"})
+@Entity(primaryKeys = {"userId", "recipeId"}, tableName = "bookmark")
 public class Bookmark {
     private int userId;
     private int recipeId;

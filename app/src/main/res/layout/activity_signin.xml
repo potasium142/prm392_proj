@@ -87,7 +87,7 @@
             app:layout_constraintVertical_chainStyle="spread_inside">
 
             <EditText
-                android:id="@+id/name_prompt_input"
+                android:id="@+id/username_prompt_input"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:background="@drawable/input_box"
@@ -105,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/prompt_name"
-                app:layout_constraintBottom_toTopOf="@+id/name_prompt_input"
+                app:layout_constraintBottom_toTopOf="@+id/username_prompt_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -149,7 +149,7 @@
 
 
     <Button
-        android:id="@+id/signup_button"
+        android:id="@+id/signin_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="200dp"
@@ -160,4 +160,27 @@
         app:layout_constraintStart_toStartOf="@+id/left_guideline"
         app:layout_constraintTop_toBottomOf="@+id/input_box"
         app:layout_constraintVertical_bias="0.281" />
+
+    <Button
+        android:id="@+id/switch_signup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="200dp"
+        android:text="@string/action_signup"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/signin_button"
+        app:layout_constraintVertical_bias="0.951" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Or sign up"
+        app:layout_constraintBottom_toTopOf="@+id/switch_signup"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintStart_toStartOf="@+id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/signin_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>

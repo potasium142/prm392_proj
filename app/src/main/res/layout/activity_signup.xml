@@ -87,7 +87,7 @@
             app:layout_constraintVertical_chainStyle="spread_inside">
 
             <EditText
-                android:id="@+id/name_prompt_input"
+                android:id="@+id/username_prompt_input"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:background="@drawable/input_box"
@@ -105,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/prompt_name"
-                app:layout_constraintBottom_toTopOf="@+id/name_prompt_input"
+                app:layout_constraintBottom_toTopOf="@+id/username_prompt_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"

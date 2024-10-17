@@ -1,10 +1,7 @@
-package entities.models;
+package database.entities.models;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import java.util.List;
-import java.util.Map;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Entity(tableName = "recipe")
 @Getter
 @Setter
 @Builder
@@ -25,11 +22,8 @@ public class RecipeEntity {
 
     private int userCreatorId;
 
-    private byte[] picture;
+    private String picture;
 
     private String description;
 
-    private Map<String, Integer> ingredientList;
-
-    private List<String> instructions;
 }
