@@ -51,4 +51,5 @@ dependencies {
     compileOnly(libs.projectlombok.lombok)
     annotationProcessor(libs.projectlombok.lombok)
     annotationProcessor(libs.room.compiler)
+
 }

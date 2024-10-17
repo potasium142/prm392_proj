@@ -41,5 +41,9 @@ public class TestScreenActivity extends AppCompatActivity {
         var userProfileJump = findViewById(R.id.user_profile_jump);
         var userProfileIntent = new Intent(this, UserProfileActivity.class);
         userProfileJump.setOnClickListener(v -> startActivity(userProfileIntent));
+
+        var searchJumpBtn = findViewById(R.id.searchJump);
+        var searchJumpIntent = new Intent(this, SearchActivity.class);
+        searchJumpBtn.setOnClickListener(v -> startActivity(searchJumpIntent));
     }
 }
