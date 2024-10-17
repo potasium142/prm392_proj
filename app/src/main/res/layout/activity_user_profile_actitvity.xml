@@ -5,12 +5,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".activities.UserProfileActitvity">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,16 +54,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Chef"
-                        android:textSize="14sp"
-                        android:textColor="#888888" />
+                        android:textColor="#888888"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/profile_description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Passionate about food and life 🍲🍜🍛"
-                        android:textSize="14sp"
-                        android:textColor="#888888" />
+                        android:textColor="#888888"
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -157,14 +160,13 @@
                     android:textColor="#00A896"
                     android:textSize="16sp"
                     android:layout_marginEnd="16dp" />
-
             </LinearLayout>
 
-            <!-- Recipe List -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/recipe_list"/>
+<!--            &lt;!&ndash; Recipe List &ndash;&gt;-->
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/recipe_list"/>-->
 
         </LinearLayout>
     </ScrollView>
