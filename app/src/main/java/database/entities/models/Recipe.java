@@ -21,12 +21,9 @@ public class Recipe {
 
     @PrimaryKey(autoGenerate = true)
     private int recipeId;
-
     private int userCreatorId;
-
+    private String dishName;
     private String picture;
-
     private String description;
-
     private Date creationDate;
 }

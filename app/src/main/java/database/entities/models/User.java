@@ -1,6 +1,7 @@
 package database.entities.models;
 
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import lombok.AllArgsConstructor;
@@ -9,7 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(tableName = "user")
+@Entity(tableName = "user", indices = {@Index(value = {"username"}, unique = true)})
 @Builder
 @Getter
 @Setter

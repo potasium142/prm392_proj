@@ -13,8 +13,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(primaryKeys = {"userId", "recipeId"},
-        tableName = "rate")
+@Entity(primaryKeys = {"userId", "recipeId"}, tableName = "rate")
 public class Rate {
     private int userId;
     private int recipeId;

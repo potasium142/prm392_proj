@@ -76,7 +76,7 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(this, "Username exist", Toast.LENGTH_SHORT).show();
             return;
         }
-        var insertStatus = db.userDAO().insertUser(user);
+        var insertStatus = db.userDAO().insert(user);
 
         if (insertStatus == -1) {
             Toast.makeText(this,

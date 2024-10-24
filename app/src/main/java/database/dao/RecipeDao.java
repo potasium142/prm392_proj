@@ -13,8 +13,8 @@ import database.entities.models.Recipe;
 @Dao
 public interface RecipeDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(Recipe word);
+    void insert(Recipe recipe);
 
-    @Query("SELECT * FROM Recipe")
+    @Query("SELECT * FROM recipe")
     LiveData<List<Recipe>> getAllRecipes();
 }

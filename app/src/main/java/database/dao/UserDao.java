@@ -9,10 +9,10 @@ import java.util.List;
 import database.entities.models.User;
 
 @Dao
-public interface UserDAO {
+public interface UserDao {
 
     @Insert
-    Long insertUser(User user);
+    Long insert(User user);
 
     @Query("SELECT * FROM User")
     List<User> getListUser();
@@ -22,4 +22,7 @@ public interface UserDAO {
 
     @Query("SELECT EXISTS(SELECT * FROM User WHERE username = :username AND password = :password)")
     Boolean accountExist(String username, String password);
+
+    @Query("SELECT * FROM User WHERE username = :username")
+    User getUser(String username);
 }

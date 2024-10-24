@@ -12,8 +12,9 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import database.dao.IngredientDao;
 import database.dao.RecipeDao;
-import database.dao.UserDAO;
+import database.dao.UserDao;
 import database.entities.models.Bookmark;
 import database.entities.models.Ingredient;
 import database.entities.models.Instruction;
@@ -25,33 +26,51 @@ import database.entities.models.User;
 @TypeConverters({Converters.class})
 public abstract class DatabaseHelper extends RoomDatabase {
     private static final String DB_NAME = "PRM392";
-
-    private static volatile DatabaseHelper INSTANCE;
-
-    public static DatabaseHelper getInstance(Context context) {
-        if (INSTANCE == null) {
-            INSTANCE = Room.databaseBuilder(context.getApplicationContext(), DatabaseHelper.class, DB_NAME).allowMainThreadQueries().build();
-        }
-        return INSTANCE;
-    }
-
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    private static volatile DatabaseHelper INSTANCE;
     private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
 
-            // If you want to keep data through app restarts,
-            // comment out the following block
             databaseWriteExecutor.execute(() -> {
-                // Populate the database in the background.
-                // If you want to start with more words, just add them.
                 RecipeDao recipeDao = INSTANCE.recipeDao();
+                IngredientDao ingredientDao = INSTANCE.ingredientDao();
+                UserDao userDao = INSTANCE.userDAO();
+
+                User user = User.builder()
+                        .username("admin")
+                        .password("admin")
+                        .profileName("admin")
+                        .build();
+                userDao.insert(user);
+                user = userDao.getUser(user.getUsername());
+
+                Recipe recipe = Recipe.builder()
+                        .userCreatorId(user.getUserId())
+                        .dishName("Mediterranean Baked Cod with Lemon")
+                        .picture("dish_1.webp")
+                        .description("This Mediterranean baked cod with lemon, deliciously seasoned with fresh Mediterranean herbs, garlic, and lemon, is ready in 25 minutes, start to finish. Serve with your favorite potato dish, and a green vegetable or salad, and your meal is done.")
+                        .build();
+                recipeDao.insert(recipe);
             });
         }
     };
 
-    public abstract UserDAO userDAO();
+    public static DatabaseHelper getInstance(Context context) {
+        if (INSTANCE == null) {
+            INSTANCE = Room.databaseBuilder(context.getApplicationContext(), DatabaseHelper.class, DB_NAME)
+                    .allowMainThreadQueries()
+                    .addCallback(sRoomDatabaseCallback)
+                    .build();
+        }
+        return INSTANCE;
+    }
+
+    public abstract UserDao userDAO();
+
     public abstract RecipeDao recipeDao();
+
+    public abstract IngredientDao ingredientDao();
 }
