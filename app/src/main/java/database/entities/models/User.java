@@ -15,7 +15,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserEntity {
+public class User {
     @PrimaryKey(autoGenerate = true)
     private int userId;
 

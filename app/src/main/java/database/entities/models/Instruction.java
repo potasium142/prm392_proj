@@ -4,26 +4,19 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(tableName = "recipe")
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(tableName = "instruction")
 @Getter
 @Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class RecipeEntity {
-
+public class Instruction {
     @PrimaryKey(autoGenerate = true)
+    private int index;
     private int recipeId;
-
-    private int userCreatorId;
-
-    private String picture;
-
-    private String description;
-
+    private String instruction;
+    private int step;
 }

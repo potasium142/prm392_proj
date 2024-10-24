@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.prm392_proj.R;
 
 import database.DatabaseHelper;
-import database.entities.models.UserEntity;
+import database.entities.models.User;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -57,7 +57,7 @@ public class SignUpActivity extends AppCompatActivity {
             EditText email = findViewById(R.id.email_prompt_input);
             EditText username = findViewById(R.id.username_prompt_input);
 
-            UserEntity user = UserEntity.builder()
+            User user = User.builder()
                     .email(email.getText().toString())
                     .username(username.getText().toString())
                     .profileName(username.getText().toString())
@@ -70,7 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    private void addUser(UserEntity user) {
+    private void addUser(User user) {
         DatabaseHelper db = DatabaseHelper.getInstance(this);
         if (db.userDAO().usernameExist(user.getUsername())) {
             Toast.makeText(this, "Username exist", Toast.LENGTH_SHORT).show();

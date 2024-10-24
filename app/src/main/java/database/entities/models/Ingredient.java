@@ -8,15 +8,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity(tableName = "instruction")
 @Getter
 @Setter
-public class InstructionList {
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(tableName = "ingredient")
+public class Ingredient {
     @PrimaryKey(autoGenerate = true)
     private int index;
     private int recipeId;
-    private String instruction;
-    private int step;
+    private String ingredient;
+    private int amount;
 }
