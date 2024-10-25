@@ -15,6 +15,7 @@ import lombok.Setter;
 @Setter
 public class Instruction {
     @PrimaryKey(autoGenerate = true)
+    private int id;
     private int index;
     private int recipeId;
     private String instruction;

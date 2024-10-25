@@ -18,9 +18,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Recipe {
-
     @PrimaryKey(autoGenerate = true)
-    private int recipeId;
+    private int id;
     private int userCreatorId;
     private String dishName;
     private String picture;
