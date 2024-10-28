@@ -1,4 +1,4 @@
-package dialogs;
+package com.example.prm392_proj.dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

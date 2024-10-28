@@ -1,4 +1,4 @@
-package com.example.prm392_proj.activities;
+package com.example.prm392_proj.activitie;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.prm392_proj.R;
 
-import database.DatabaseHelper;
+import com.example.prm392_proj.database.DatabaseHelper;
 
 public class SignInActivity extends AppCompatActivity {
 

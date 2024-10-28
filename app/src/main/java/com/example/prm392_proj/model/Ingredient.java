@@ -1,7 +1,6 @@
-package database.entities.models;
+package com.example.prm392_proj.model;
 
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import lombok.AllArgsConstructor;

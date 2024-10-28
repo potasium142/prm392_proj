@@ -1,4 +1,4 @@
-package database.dao;
+package com.example.prm392_proj.dao;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
@@ -6,7 +6,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import database.entities.models.User;
+import com.example.prm392_proj.model.User;
 
 @Dao
 public interface UserDao {

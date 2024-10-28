@@ -1,4 +1,4 @@
-package com.example.prm392_proj.activities;
+package com.example.prm392_proj.activitie;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,8 +19,8 @@ import com.example.prm392_proj.R;
 import java.util.Arrays;
 import java.util.List;
 
-import adapters.SearchActivityAdapter;
-import dialogs.FilterBottomSheetDialog;
+import com.example.prm392_proj.adapter.SearchActivityAdapter;
+import com.example.prm392_proj.dialog.FilterBottomSheetDialog;
 
 public class SearchActivity extends AppCompatActivity {
     @Override

@@ -1,4 +1,4 @@
-package database.dao;
+package com.example.prm392_proj.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
@@ -8,8 +8,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import database.entities.models.Ingredient;
-import database.entities.models.Recipe;
+import com.example.prm392_proj.model.Ingredient;
 
 @Dao
 public interface IngredientDao {

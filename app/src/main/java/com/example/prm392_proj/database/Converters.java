@@ -1,4 +1,4 @@
-package database;
+package com.example.prm392_proj.database;
 
 import androidx.room.TypeConverter;
 

@@ -1,4 +1,4 @@
-package database.entities.models;
+package com.example.prm392_proj.model;
 
 import androidx.room.Entity;
 import androidx.room.Index;

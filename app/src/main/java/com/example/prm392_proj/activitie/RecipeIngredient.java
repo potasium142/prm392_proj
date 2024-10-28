@@ -1,4 +1,4 @@
-package com.example.prm392_proj.activities;
+package com.example.prm392_proj.activitie;
 
 import android.content.Intent;
 import android.os.Bundle;

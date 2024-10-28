@@ -1,4 +1,4 @@
-package database;
+package com.example.prm392_proj.database;
 
 import android.content.Context;
 
@@ -12,16 +12,16 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import database.dao.IngredientDao;
-import database.dao.InstructionDao;
-import database.dao.RecipeDao;
-import database.dao.UserDao;
-import database.entities.models.Bookmark;
-import database.entities.models.Ingredient;
-import database.entities.models.Instruction;
-import database.entities.models.Rate;
-import database.entities.models.Recipe;
-import database.entities.models.User;
+import com.example.prm392_proj.dao.IngredientDao;
+import com.example.prm392_proj.dao.InstructionDao;
+import com.example.prm392_proj.dao.RecipeDao;
+import com.example.prm392_proj.dao.UserDao;
+import com.example.prm392_proj.model.Bookmark;
+import com.example.prm392_proj.model.Ingredient;
+import com.example.prm392_proj.model.Instruction;
+import com.example.prm392_proj.model.Rate;
+import com.example.prm392_proj.model.Recipe;
+import com.example.prm392_proj.model.User;
 
 @Database(entities = {Bookmark.class, Ingredient.class, Instruction.class, Rate.class, Recipe.class, User.class}, version = 4, exportSchema = false)
 @TypeConverters({Converters.class})

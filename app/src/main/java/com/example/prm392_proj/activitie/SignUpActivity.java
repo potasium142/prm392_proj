@@ -1,4 +1,4 @@
-package com.example.prm392_proj.activities;
+package com.example.prm392_proj.activitie;
 
 import android.os.Bundle;
 import android.widget.CheckBox;
@@ -13,8 +13,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.prm392_proj.R;
 
-import database.DatabaseHelper;
-import database.entities.models.User;
+import com.example.prm392_proj.database.DatabaseHelper;
+import com.example.prm392_proj.model.User;
 
 public class SignUpActivity extends AppCompatActivity {
 
