@@ -13,10 +13,10 @@
         android:theme="@style/Theme.PRM392_Proj"
         tools:targetApi="31">
         <activity
-            android:name=".activitie.SearchActivity"
+            android:name=".activity.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".activitie.TestScreenActivity"
+            android:name=".activity.TestScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,22 +24,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activitie.BookMark" />
-        <activity android:name=".activitie.RecipeProcedure" />
+        <activity android:name=".activity.BookMark" />
+        <activity android:name=".activity.RecipeProcedure" />
         <activity
-            android:name=".activitie.RecipeIngredient"
+            android:name=".activity.RecipeIngredient"
             android:exported="false" />
         <activity
-            android:name=".activitie.UserProfileActivity"
+            android:name=".activity.UserProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".activitie.SignUpActivity"
+            android:name=".activity.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".activitie.SignInActivity"
+            android:name=".activity.SignInActivity"
             android:exported="false" />
         <activity
-            android:name=".activitie.MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
 
             <!-- <intent-filter> -->

@@ -1,4 +1,4 @@
-package com.example.prm392_proj.activitie;
+package com.example.prm392_proj.activity;
 
 import android.os.Bundle;
 
