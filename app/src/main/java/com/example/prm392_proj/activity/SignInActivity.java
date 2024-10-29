@@ -12,7 +12,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.prm392_proj.R;
-
 import com.example.prm392_proj.database.DatabaseHelper;
 
 public class SignInActivity extends AppCompatActivity {
