@@ -32,9 +32,14 @@ public class SignInActivity extends AppCompatActivity {
 
         var signInBtn = findViewById(R.id.signin_button);
 
-        signInBtn.setOnClickListener(v ->
-                login(username.getText().toString(),
-                        password.getText().toString()));
+        var mainIntent = new Intent(this, HomeActivity.class);
+
+        signInBtn.setOnClickListener(v -> {
+            var login = login(username.getText().toString(),
+                    password.getText().toString());
+
+            if (login) startActivity(mainIntent);
+        });
 
         var switchSignUpBtn = findViewById(R.id.switch_signup);
         var signUpIntent = new Intent(this, SignUpActivity.class);
@@ -42,13 +47,22 @@ public class SignInActivity extends AppCompatActivity {
         switchSignUpBtn.setOnClickListener(v -> startActivity(signUpIntent));
     }
 
-    void login(String username, String password) {
+    boolean login(String username, String password) {
         var db = DatabaseHelper.getInstance(this);
 
+        var sr = getSharedPreferences("vclclgtclgmcs", MODE_PRIVATE);
+        var editor = sr.edit();
         if (db.userDAO().accountExist(username, password)) {
+            var acc = db.userDAO().getUser(username);
             Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
+
+            editor.putString("USERNAME", acc.getUsername());
+            editor.putInt("USERID", acc.getId());
+            editor.apply();
+            return true;
         } else {
             Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show();
+            return false;
         }
 
     }

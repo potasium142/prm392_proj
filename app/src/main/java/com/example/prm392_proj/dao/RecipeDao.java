@@ -31,4 +31,8 @@ public interface RecipeDao {
 
     @Query("SELECT * FROM recipe")
     LiveData<List<Recipe>> getAllRecipes();
+
+
+    @Query("SELECT * FROM recipe")
+    List<Recipe> getAllRecipes_();
 }
