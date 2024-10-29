@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.prm392_proj.R;
+import com.example.prm392_proj.repository.RecipeRepository;
 
 public class TestScreenActivity extends AppCompatActivity {
 
@@ -45,5 +46,9 @@ public class TestScreenActivity extends AppCompatActivity {
         var searchJumpBtn = findViewById(R.id.searchJump);
         var searchJumpIntent = new Intent(this, SearchActivity.class);
         searchJumpBtn.setOnClickListener(v -> startActivity(searchJumpIntent));
+
+        var allRecipesButton = findViewById(R.id.all_recipes_button);
+        var allRecipesIntent = new Intent(this, RecipeListEditableActivity.class);
+        allRecipesButton.setOnClickListener(v -> startActivity(allRecipesIntent));
     }
 }

@@ -28,7 +28,7 @@ import com.example.prm392_proj.model.User;
 public abstract class DatabaseHelper extends RoomDatabase {
     private static final String DB_NAME = "PRM392_final_project";
     private static final int NUMBER_OF_THREADS = 4;
-    static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     private static volatile DatabaseHelper INSTANCE;
     private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
