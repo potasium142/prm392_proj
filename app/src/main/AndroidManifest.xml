@@ -36,10 +36,6 @@
             android:exported="false" />
         <activity
             android:name=".activity.TestScreenActivity"
-            android:name=".activities.UserProfileActitvity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.TestScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,18 +43,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.RecipeProcedure" />
+        <activity android:name=".activity.RecipeProcedure" />
         <activity
-            android:name=".activities.RecipeIngredient"
+            android:name=".activity.RecipeIngredient"
             android:exported="false" />
         <activity
-            android:name=".activities.SignUpActivity"
+            android:name=".activity.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SignInActivity"
+            android:name=".activity.SignInActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true">
             <!--            <intent-filter>-->
             <!--                <action android:name="android.intent.action.MAIN" />-->

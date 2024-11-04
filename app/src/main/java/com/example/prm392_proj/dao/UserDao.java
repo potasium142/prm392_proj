@@ -27,7 +27,7 @@ public interface UserDao {
     void delete(User user);
 
     @Query("SELECT * FROM User")
-    List<User> getListUser();
+    LiveData<List<User>> getAllUsers();
 
     @Query("SELECT EXISTS(SELECT * FROM User WHERE username = :username)")
     Boolean usernameExist(String username);
