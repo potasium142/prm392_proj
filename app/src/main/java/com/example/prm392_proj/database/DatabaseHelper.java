@@ -23,7 +23,7 @@ import com.example.prm392_proj.model.Rate;
 import com.example.prm392_proj.model.Recipe;
 import com.example.prm392_proj.model.User;
 
-@Database(entities = {Bookmark.class, Ingredient.class, Instruction.class, Rate.class, Recipe.class, User.class}, version = 4, exportSchema = false)
+@Database(entities = {Bookmark.class, Ingredient.class, Instruction.class, Rate.class, Recipe.class, User.class}, version = 5, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class DatabaseHelper extends RoomDatabase {
     private static final String DB_NAME = "PRM392_final_project";
@@ -52,7 +52,7 @@ public abstract class DatabaseHelper extends RoomDatabase {
                 Recipe recipe = Recipe.builder()
                         .userCreatorId(user.getId())
                         .dishName("Mediterranean Baked Cod with Lemon")
-                        .picture("dish_1.webp")
+                        .picture("https://www.allrecipes.com/thmb/1blq_he4MHCz2acTU7arELCnGrI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8576313_Mediterranean-Baked-Cod-with-Lemon_Brenda-Venable_4x3-b34ff9cd504b4aca9ba74d5ca8ba0c4d.jpg")
                         .description("This Mediterranean baked cod with lemon, deliciously seasoned with fresh Mediterranean herbs, garlic, and lemon, is ready in 25 minutes, start to finish. Serve with your favorite potato dish, and a green vegetable or salad, and your meal is done.")
                         .build();
                 recipeDao.insert(recipe);
