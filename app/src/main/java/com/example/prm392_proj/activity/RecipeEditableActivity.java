@@ -41,6 +41,9 @@ public class RecipeEditableActivity extends AppCompatActivity {
         TextView dishTittle = findViewById(R.id.dishTitle);
         dishTittle.setText(recipe.getDishName());
 
+        TextView totalTime = findViewById(R.id.totalTime);
+        totalTime.setText(String.valueOf(recipe.getTotalTime()));
+
         ImageView dishImageView = findViewById(R.id.foodImage);
         Picasso.get().load(recipe.getPicture()).into(dishImageView);
 
