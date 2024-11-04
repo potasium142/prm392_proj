@@ -99,7 +99,7 @@ public class EditUserProfileActivity extends AppCompatActivity {
 
             // Cập nhật lại SharedPreferences nếu cần
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("USERNAME", newUsername); // Cập nhật username nếu có thay đổi
+            editor.putString("USERNAME", newUsername);
             editor.apply();
 
             Intent intent = new Intent(EditUserProfileActivity.this, UserProfileActivity.class);
