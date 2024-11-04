@@ -1,6 +1,8 @@
 package com.example.prm392_proj.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -40,5 +42,13 @@ public class HomeActivity extends AppCompatActivity {
 
         db.recipeDao()
                 .getAllRecipes();
+
+        var avt = findViewById(R.id.avt);
+
+        avt.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, UserProfileActivity.class);
+            intent.putExtra("PROFILE_NAME", username);
+            startActivity(intent);
+        });
     }
 }

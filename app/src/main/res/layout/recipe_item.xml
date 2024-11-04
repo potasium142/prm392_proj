@@ -1,6 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="200dp"
+    android:id="@+id/recipe_image"
     android:background="@drawable/background_demo"
     android:padding="16dp">
 
@@ -23,7 +25,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Traditional spare ribs baked"
+            android:id="@+id/recipe_name"
+
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -31,7 +34,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="By Chef John"
+            android:id="@+id/chef_name"
+
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
     </LinearLayout>
@@ -51,11 +55,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/rating_star"
-            android:tint="#FFD700" />
+            app:tint="#FFD700" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/rating_star"
             android:text="4.0"
             android:textColor="#FFFFFF"
             android:textSize="14sp"

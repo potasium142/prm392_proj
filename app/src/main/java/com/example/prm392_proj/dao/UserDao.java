@@ -3,6 +3,7 @@ package com.example.prm392_proj.dao;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -25,4 +26,7 @@ public interface UserDao {
 
     @Query("SELECT * FROM User WHERE username = :username")
     User getUser(String username);
+
+    @Update
+    void updateUser(User user);
 }
