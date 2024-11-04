@@ -35,4 +35,7 @@ public interface RecipeDao {
 
     @Query("SELECT * FROM recipe")
     List<Recipe> getAllRecipes_();
+
+    @Query("SELECT COUNT(*) FROM recipe WHERE userCreatorId = :userId")
+    int countRecipesByUserId(int userId);
 }

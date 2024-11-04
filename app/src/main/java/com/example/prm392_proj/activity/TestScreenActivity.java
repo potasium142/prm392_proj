@@ -1,4 +1,4 @@
-package com.example.prm392_proj.activity;
+package com.example.prm392_proj.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.prm392_proj.R;
-import com.example.prm392_proj.repository.RecipeRepository;
 
 public class TestScreenActivity extends AppCompatActivity {
 
@@ -38,17 +37,8 @@ public class TestScreenActivity extends AppCompatActivity {
         var signInJumpIntent = new Intent(this, SignInActivity.class);
         signInJumpBtn.setOnClickListener(v -> startActivity(signInJumpIntent));
 
-
-        var userProfileJump = findViewById(R.id.user_profile_jump);
-        var userProfileIntent = new Intent(this, UserProfileActivity.class);
-        userProfileJump.setOnClickListener(v -> startActivity(userProfileIntent));
-
-        var searchJumpBtn = findViewById(R.id.searchJump);
-        var searchJumpIntent = new Intent(this, SearchActivity.class);
-        searchJumpBtn.setOnClickListener(v -> startActivity(searchJumpIntent));
-
-        var allRecipesButton = findViewById(R.id.all_recipes_button);
-        var allRecipesIntent = new Intent(this, RecipeListEditableActivity.class);
-        allRecipesButton.setOnClickListener(v -> startActivity(allRecipesIntent));
+        var userProfileJumpBtn = findViewById(R.id.userProfileJump);
+        var userProfileJumpIntent = new Intent(this, UserProfileActitvity.class);
+        userProfileJumpBtn.setOnClickListener(v -> startActivity(userProfileJumpIntent));
     }
 }

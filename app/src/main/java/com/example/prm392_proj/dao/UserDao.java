@@ -7,6 +7,9 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import java.util.List;
+import androidx.room.Update;
+
 import com.example.prm392_proj.model.User;
 
 import java.util.List;
@@ -24,7 +27,7 @@ public interface UserDao {
     void delete(User user);
 
     @Query("SELECT * FROM User")
-    LiveData<List<User>> getAllUsers();
+    List<User> getListUser();
 
     @Query("SELECT EXISTS(SELECT * FROM User WHERE username = :username)")
     Boolean usernameExist(String username);
@@ -34,6 +37,9 @@ public interface UserDao {
 
     @Query("SELECT * FROM User WHERE username = :username")
     User getUser(String username);
+
+    @Update
+    void updateUser(User user);
 
     @Query("SELECT * FROM User WHERE id = :id")
     User getUserById(int id);

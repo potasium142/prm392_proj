@@ -1,5 +1,6 @@
 package com.example.prm392_proj.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -32,5 +33,12 @@ public class HomeActivity extends AppCompatActivity {
 
         usernameText.setText("Hello " + username);
 
+        var avt = findViewById(R.id.avt);
+
+        avt.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, UserProfileActivity.class);
+            intent.putExtra("PROFILE_NAME", username);
+            startActivity(intent);
+        });
     }
 }
