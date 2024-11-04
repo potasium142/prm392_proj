@@ -5,43 +5,19 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.TestScreenActivity">
+    tools:context=".activity.TestScreenActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/mainScreenJumpLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.07999998">
-
-        <Button
-            android:id="@+id/userProfileJump"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="User Profile"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mainScreenJump"
-            app:layout_constraintVertical_bias="1.0" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/signInJump"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Sign in"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/signUpJump"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="Sign in" />
 
         <Button
             android:id="@+id/mainScreenJump"
@@ -49,11 +25,7 @@
             android:layout_height="wrap_content"
             android:text="main screen"
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/signUpJump"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            />
 
         <Button
             android:id="@+id/signUpJump"
@@ -61,12 +33,26 @@
             android:layout_height="wrap_content"
             android:text="Sign up"
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/signInJump"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/mainScreenJump"
-            app:layout_constraintTop_toTopOf="parent" />
+            />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/searchJump"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Search" />
+
+        <Button
+            android:id="@+id/user_profile_jump"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Profile" />
+
+        <Button
+            android:id="@+id/all_recipes_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All recipes" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
