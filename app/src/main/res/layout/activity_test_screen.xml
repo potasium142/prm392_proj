@@ -13,6 +13,12 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/userProfileJump"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Profile" />
+
+        <Button
             android:id="@+id/signInJump"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

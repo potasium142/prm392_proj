@@ -38,7 +38,7 @@ public class TestScreenActivity extends AppCompatActivity {
         signInJumpBtn.setOnClickListener(v -> startActivity(signInJumpIntent));
 
         var userProfileJumpBtn = findViewById(R.id.userProfileJump);
-//        var userProfileJumpIntent = new Intent(this, UserProfileActitvity.class);
-//        userProfileJumpBtn.setOnClickListener(v -> startActivity(userProfileJumpIntent));
+        var userProfileJumpIntent = new Intent(this, UserProfileActivity.class);
+        userProfileJumpBtn.setOnClickListener(v -> startActivity(userProfileJumpIntent));
     }
 }
