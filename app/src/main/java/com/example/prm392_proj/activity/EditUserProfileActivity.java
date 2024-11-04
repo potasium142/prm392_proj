@@ -106,7 +106,7 @@ public class EditUserProfileActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         } else {
-            Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "User not found!", Toast.LENGTH_SHORT).show();
         }
     }
 }
