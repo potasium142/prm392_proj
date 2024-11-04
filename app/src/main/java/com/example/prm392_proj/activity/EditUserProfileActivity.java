@@ -56,7 +56,7 @@ public class EditUserProfileActivity extends AppCompatActivity {
         DatabaseHelper db = DatabaseHelper.getInstance(this);
         User user = db.userDAO().getUser(username); // Lấy thông tin người dùng từ cơ sở dữ liệu
 
-        // Kiểm tra xem người dùng có tồn tại không
+        // Kiểm tra xem người dùng có tồn tại hay không
         if (user != null) {
             usernameInput.setText(user.getUsername());
             emailInput.setText(user.getEmail());
