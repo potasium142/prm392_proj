@@ -1,12 +1,9 @@
 package com.example.prm392_proj.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -23,18 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class Recipe implements Parcelable {
-    public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
-        @Override
-        public Recipe createFromParcel(Parcel in) {
-            return new Recipe(in);
-        }
-
-        @Override
-        public Recipe[] newArray(int size) {
-            return new Recipe[size];
-        }
-    };
+public class Recipe implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private int userCreatorId;
@@ -51,25 +37,4 @@ public class Recipe implements Parcelable {
         this.creationDate = new Date();
     }
 
-    protected Recipe(Parcel in) {
-        id = in.readInt();
-        userCreatorId = in.readInt();
-        dishName = in.readString();
-        picture = in.readString();
-        description = in.readString();
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeInt(this.id);
-        dest.writeInt(this.userCreatorId);
-        dest.writeString(this.dishName);
-        dest.writeString(this.picture);
-        dest.writeString(this.description);
-    }
 }
