@@ -13,6 +13,7 @@ lifecycleLivedataKtx = "2.8.6"
 lifecycleViewmodelKtx = "2.8.6"
 roomCommon = "2.6.1"
 roomRuntime = "2.6.1"
+picasso = "2.71828"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -29,6 +30,7 @@ projectlombok-lombok = { module = "org.projectlombok:lombok", version.ref = "lom
 room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCommon" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomRuntime" }
+picasso = { group = "com.squareup.picasso", name = "picasso", version.ref = "picasso" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -25,19 +25,19 @@ public class RecipeRepository {
         return mAllRecipes;
     }
 
-    void insert(Recipe recipe) {
+    public void insert(Recipe recipe) {
         DatabaseHelper.databaseWriteExecutor.execute(() -> {
             mRecipeDao.insert(recipe);
         });
     }
 
-    void update(Recipe recipe) {
+    public void update(Recipe recipe) {
         DatabaseHelper.databaseWriteExecutor.execute(() -> {
             mRecipeDao.update(recipe);
         });
     }
 
-    void delete(Recipe recipe) {
+    public void delete(Recipe recipe) {
         DatabaseHelper.databaseWriteExecutor.execute(() -> {
             mRecipeDao.delete(recipe);
         });

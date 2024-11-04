@@ -1,5 +1,7 @@
 package com.example.prm392_proj.activity;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -12,12 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prm392_proj.R;
 import com.example.prm392_proj.adapter.RecipeListEditableAdapter;
-import com.example.prm392_proj.dao.RecipeDao;
 import com.example.prm392_proj.model.Recipe;
 import com.example.prm392_proj.repository.RecipeRepository;
+import com.google.android.material.snackbar.Snackbar;
 
 public class RecipeListEditableActivity extends AppCompatActivity {
-    public RecipeDao recipeListEditableActivity;
+    int EDIT_RECIPE_ACTIVITY_REQUEST_CODE = 1;
     RecipeRepository recipeRepository;
 
     @Override
@@ -33,14 +35,30 @@ public class RecipeListEditableActivity extends AppCompatActivity {
 
         recipeRepository = new RecipeRepository(this.getApplication());
         RecyclerView recyclerView = findViewById(R.id.recipe_recycler_view);
-        RecipeListEditableAdapter adapter = new RecipeListEditableAdapter(new RecipeListEditableAdapter.WordDiff(), this);
+        RecipeListEditableAdapter adapter = new RecipeListEditableAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recipeRepository.getAllRecipes().observe(this, products -> {
-            adapter.submitList(products);
+        recipeRepository.getAllRecipes().observe(this, recipes -> {
+            adapter.setRecipes(recipes);
         });
     }
 
-    public void startEditRecipeActivity(Recipe current) {
+    public void startEditRecipeActivity(Recipe recipe) {
+        Intent intent = new Intent(this, RecipeEditableActivity.class);
+        intent.putExtra("recipe", recipe);
+        startActivityForResult(intent, EDIT_RECIPE_ACTIVITY_REQUEST_CODE);
+    }
+
+    public void deleteRecipe(Recipe recipe) {
+        new AlertDialog.Builder(this).setTitle("Delete recipe")
+                .setMessage("Are you sure you want to delete this recipe?")
+                .setPositiveButton("OK", (dialog, which) -> {
+                    recipeRepository.delete(recipe);
+                    Snackbar.make(findViewById(android.R.id.content),
+                            "Recipe deleted",
+                            Snackbar.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 }
