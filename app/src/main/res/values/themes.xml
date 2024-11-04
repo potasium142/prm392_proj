@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.PRM392_Proj" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.PRM392_Proj" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary1</item>
         <item name="colorPrimaryVariant">@color/primary2</item>

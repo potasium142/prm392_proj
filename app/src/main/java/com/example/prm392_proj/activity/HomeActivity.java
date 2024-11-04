@@ -2,7 +2,6 @@ package com.example.prm392_proj.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -12,7 +11,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.prm392_proj.R;
-import com.example.prm392_proj.database.DatabaseHelper;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -26,22 +24,14 @@ public class HomeActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        var sr = getSharedPreferences("vclclgtclgmcs", MODE_PRIVATE);
-        var editor = sr.edit();
 
-        TextView usernameText = findViewById(R.id.username_text);
+        var sr = getSharedPreferences("vclclgtclgmcs", MODE_PRIVATE);
+
+        TextView usernameText = findViewById(R.id.hello_username);
 
         var username = sr.getString("USERNAME", "<user>");
 
-        usernameText.setText(username);
-
-
-        var db = DatabaseHelper.getInstance(this);
-
-        var recipeDao = db.recipeDao();
-
-        db.recipeDao()
-                .getAllRecipes();
+        usernameText.setText("Hello " + username);
 
         var avt = findViewById(R.id.avt);
 

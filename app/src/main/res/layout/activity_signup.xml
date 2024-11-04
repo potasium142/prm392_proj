@@ -94,11 +94,9 @@
                 android:hint="@string/prompt_name"
                 android:inputType="text"
                 android:padding="10dp"
-                android:textColor="@color/gray4"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:inputType="text" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/name_prompt_header"
@@ -130,7 +128,6 @@
                 android:hint="@string/prompt_email"
                 android:inputType="text"
                 android:padding="10dp"
-                android:textColor="@color/gray4"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -163,9 +160,8 @@
                 android:layout_height="48dp"
                 android:background="@drawable/input_box"
                 android:hint="@string/prompt_password"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:padding="10dp"
-                android:textColor="@color/gray4"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -198,9 +194,8 @@
                 android:layout_height="48dp"
                 android:background="@drawable/input_box"
                 android:hint="@string/prompt_confirm_password"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:padding="10dp"
-                android:textColor="@color/gray4"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
