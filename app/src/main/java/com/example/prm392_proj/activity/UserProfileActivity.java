@@ -50,12 +50,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
         // Thiết lập menu
         ImageView menuIcon = findViewById(R.id.menu_icon);
-        menuIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPopupMenu(v);
-            }
-        });
+        menuIcon.setOnClickListener(this::showPopupMenu);
 
         // Thiết lập nút quay lại
         ImageView backButton = findViewById(R.id.back_button);
@@ -93,28 +88,28 @@ public class UserProfileActivity extends AppCompatActivity {
         // Lấy username từ SharedPreferences thay vì Intent
         var sharedPreferences = getSharedPreferences("vclclgtclgmcs", MODE_PRIVATE);
         String username = sharedPreferences.getString("USERNAME", null);
+        String email = sharedPreferences.getString("EMAIL", null);
         String profileName = getIntent().getStringExtra("PROFILE_NAME");
 
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.edit_profile) {
-                    // Chuyển đến EditUserProfileActivity và truyền username
-                    Intent editProfileIntent = new Intent(UserProfileActivity.this, EditUserProfileActivity.class);
-                    editProfileIntent.putExtra("USERNAME", username); // Truyền username
-                    editProfileIntent.putExtra("PROFILE_NAME", profileName); // Truyền profileName
-                    Log.d("UserProfileActivity", "Username: " + username);
-                    startActivity(editProfileIntent);
-                    return true;
-                } else if (item.getItemId() == R.id.change_password) {
-                    // Chuyển đến ChangePasswordActivity
-                    Intent changePasswordIntent = new Intent(UserProfileActivity.this, ChangePasswordActivity.class);
-                    changePasswordIntent.putExtra("USERNAME", username);
-                    startActivity(changePasswordIntent);
-                    return true;
-                } else {
-                    return false;
-                }
+        popupMenu.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.edit_profile) {
+                // Chuyển đến EditUserProfileActivity và truyền username
+                Intent editProfileIntent = new Intent(UserProfileActivity.this, EditUserProfileActivity.class);
+                editProfileIntent.putExtra("USERNAME", username);           // Truyền username
+                editProfileIntent.putExtra("EMAIL", email);                 // Truyền email
+                editProfileIntent.putExtra("PROFILE_NAME", profileName);    // Truyền profileName
+                Log.d("UserProfileActivity", "Username: " + username);
+                Log.d("UserProfileActivity", "Email: " + email);
+                startActivity(editProfileIntent);
+                return true;
+            } else if (item.getItemId() == R.id.change_password) {
+                // Chuyển đến ChangePasswordActivity
+                Intent changePasswordIntent = new Intent(UserProfileActivity.this, ChangePasswordActivity.class);
+                changePasswordIntent.putExtra("USERNAME", username);
+                startActivity(changePasswordIntent);
+                return true;
+            } else {
+                return false;
             }
         });
         popupMenu.show();
