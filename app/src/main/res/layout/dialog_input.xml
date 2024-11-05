@@ -19,8 +19,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_dialog_rounded_corner"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="12dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -34,31 +35,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="#DCDCDC"
+                android:text="Cancel"
+                android:textColor="@color/black" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/cancelButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:backgroundTint="#DCDCDC"
-            android:text="Cancel"
-            android:textColor="@color/black" />
-
-        <Button
-            android:id="@+id/enterButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="1"
-            android:text="Enter" />
+            <Button
+                android:id="@+id/enterButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="Enter" />
+        </LinearLayout>
     </LinearLayout>
 
 
