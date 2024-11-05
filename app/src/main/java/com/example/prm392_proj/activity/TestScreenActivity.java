@@ -2,6 +2,7 @@ package com.example.prm392_proj.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,8 +11,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.prm392_proj.R;
+import com.example.prm392_proj.model.Recipe;
+import com.example.prm392_proj.repository.RecipeRepository;
+
+import java.util.List;
 
 public class TestScreenActivity extends AppCompatActivity {
+    private RecipeRepository recipeRepository; // Declare RecipeRepository
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,5 +54,26 @@ public class TestScreenActivity extends AppCompatActivity {
         var allRecipesButton = findViewById(R.id.all_recipes_button);
         var allRecipesIntent = new Intent(this, RecipeListEditableActivity.class);
         allRecipesButton.setOnClickListener(v -> startActivity(allRecipesIntent));
+
+
+
+        // Initialize the RecipeRepository
+        recipeRepository = new RecipeRepository(getApplication());
+
+        // Observe the recipe data from the repository and log it
+        recipeRepository.getAllRecipes().observe(this, recipes -> {
+            if (recipes != null) {
+                logAllRecipes(recipes); // Call method to log the list of recipes
+            }
+        });
+
+    }
+
+    // Method to log all recipes from the repository
+    private void logAllRecipes(List<Recipe> recipes) {
+        Log.d("TestScreenActivity", "Listing all recipes:");
+        for (Recipe recipe : recipes) {
+            Log.d("TestScreenActivity", "Recipe ID: " + recipe.getId() + ", Name: " + recipe.getDishName());
+        }
     }
 }

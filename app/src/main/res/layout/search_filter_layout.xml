@@ -47,25 +47,25 @@
         android:orientation="horizontal"
         android:padding="16dp">
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/buttonAll"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:textSize="10sp"
             android:text="All" />
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/buttonNewest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10sp"
             android:text="Newest" />
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/buttonOldest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10sp"
             android:text="Oldest" />
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/buttonPopularity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10sp"
@@ -125,62 +125,62 @@
             android:textSize="10sp"
             android:text="1 ⭐" />
     </LinearLayout>
-<!--    -->
-    <LinearLayout
-        android:id="@+id/navigationBar6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp">
-        <TextView
-            android:id="@+id/signin_header4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
-            android:text="Caterogy"
-            android:textColor="@android:color/black"
-            android:textFontWeight="1000"
-            android:textSize="18sp"
-            android:layout_marginStart="0dp"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/navigationBar7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp">
-        <Button
-            android:id="@+id/button71"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:text="All" />
-        <Button
-            android:id="@+id/button72"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:text="Cereal" />
-        <Button
-            android:id="@+id/button73"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:text="Fruit" />
-        <Button
-            android:id="@+id/button74"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:text="Vegetable" />
-        <Button
-            android:id="@+id/button75"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:text="Local dish" />
-    </LinearLayout>
-<!--    -->
+    <!--    -->
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/navigationBar6"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        android:padding="16dp">-->
+    <!--        <TextView-->
+    <!--            android:id="@+id/signin_header4"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:fontFamily="@font/poppins"-->
+    <!--            android:text="Caterogy"-->
+    <!--            android:textColor="@android:color/black"-->
+    <!--            android:textFontWeight="1000"-->
+    <!--            android:textSize="18sp"-->
+    <!--            android:layout_marginStart="0dp"/>-->
+    <!--    </LinearLayout>-->
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/navigationBar7"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        android:padding="16dp">-->
+    <!--        <Button-->
+    <!--            android:id="@+id/button71"-->
+    <!--            android:layout_width="60dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:textSize="10sp"-->
+    <!--            android:text="All" />-->
+    <!--        <Button-->
+    <!--            android:id="@+id/button72"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:textSize="10sp"-->
+    <!--            android:text="Cereal" />-->
+    <!--        <Button-->
+    <!--            android:id="@+id/button73"-->
+    <!--            android:layout_width="60dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:textSize="10sp"-->
+    <!--            android:text="Fruit" />-->
+    <!--        <Button-->
+    <!--            android:id="@+id/button74"-->
+    <!--            android:layout_width="60dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:textSize="10sp"-->
+    <!--            android:text="Vegetable" />-->
+    <!--        <Button-->
+    <!--            android:id="@+id/button75"-->
+    <!--            android:layout_width="60dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:textSize="10sp"-->
+    <!--            android:text="Local dish" />-->
+    <!--    </LinearLayout>-->
+    <!--    -->
     <LinearLayout
         android:id="@+id/navigationBar8"
         android:layout_width="match_parent"
