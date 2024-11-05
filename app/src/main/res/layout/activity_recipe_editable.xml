@@ -136,6 +136,7 @@
                         android:textColor="@color/black" />
 
                     <ImageButton
+                        android:id="@+id/totalTimeEditButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/white"

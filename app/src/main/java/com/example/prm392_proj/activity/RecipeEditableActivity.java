@@ -1,14 +1,9 @@
 package com.example.prm392_proj.activity;
 
-import android.app.Application;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +11,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.prm392_proj.R;
 import com.example.prm392_proj.adapter.RecipeEditableViewPagerAdapter;
-import com.example.prm392_proj.frament.IngredientListEditableFragment;
+import com.example.prm392_proj.dialog.InputDialog;
 import com.example.prm392_proj.model.Recipe;
 import com.example.prm392_proj.model.User;
 import com.example.prm392_proj.repository.UserRepository;
@@ -43,6 +38,16 @@ public class RecipeEditableActivity extends AppCompatActivity {
 
         TextView totalTime = findViewById(R.id.totalTime);
         totalTime.setText(String.valueOf(recipe.getTotalTime()));
+        ImageButton totalTimeEditButton = findViewById(R.id.totalTimeEditButton);
+        totalTimeEditButton.setOnClickListener(v -> {
+            InputDialog inputDialog = new InputDialog(this);
+            inputDialog.setOnEnterListener(input -> {
+                recipe.setTotalTime(Integer.parseInt(input));
+                totalTime.setText(String.valueOf(recipe.getTotalTime()));
+            });
+            inputDialog.show();
+
+        });
 
         ImageView dishImageView = findViewById(R.id.foodImage);
         Picasso.get().load(recipe.getPicture()).into(dishImageView);
