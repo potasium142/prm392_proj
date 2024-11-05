@@ -30,7 +30,6 @@ public class EditUserProfileActivity extends AppCompatActivity {
 
         // Nhận dữ liệu từ Intent
         username = getIntent().getStringExtra("USERNAME");
-        String profileName = getIntent().getStringExtra("PROFILE_NAME");
 
         // Khởi tạo các trường nhập liệu
         usernameInput = findViewById(R.id.username_input);
@@ -42,13 +41,10 @@ public class EditUserProfileActivity extends AppCompatActivity {
         loadUserData(username);
 
         saveButton.setOnClickListener(v -> saveUserProfile());
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(EditUserProfileActivity.this, UserProfileActivity.class);
-                intent.putExtra("USERNAME", username);
-                startActivity(intent);
-            }
+        backButton.setOnClickListener(view -> {
+            Intent intent = new Intent(EditUserProfileActivity.this, UserProfileActivity.class);
+            intent.putExtra("USERNAME", username);
+            startActivity(intent);
         });
     }
 

@@ -37,21 +37,15 @@ public class ChangePasswordActivity extends AppCompatActivity {
         // Nhận username từ Intent
         String username = getIntent().getStringExtra("USERNAME");
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ChangePasswordActivity.this, UserProfileActivity.class);
-                intent.putExtra("USERNAME", username); // Truyền lại username
-                startActivity(intent);
-            }
+        backButton.setOnClickListener(view -> {
+            Intent intent = new Intent(ChangePasswordActivity.this, UserProfileActivity.class);
+            intent.putExtra("USERNAME", username); // Truyền lại username
+            startActivity(intent);
         });
 
         // Thiết lập sự kiện click cho nút thay đổi mật khẩu
-        changePasswordButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changePassword(username); // Truyền username vào phương thức changePassword
-            }
+        changePasswordButton.setOnClickListener(v -> {
+            changePassword(username); // Truyền username vào phương thức changePassword
         });
     }
 
