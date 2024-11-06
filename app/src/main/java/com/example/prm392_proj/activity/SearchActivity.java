@@ -29,7 +29,7 @@ public class SearchActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_search);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.ingredientsRecyclerView);
         int numberOfColumns = 2;  // Set the number of columns
         recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
         List<String> yourDataList = Arrays.asList("Recipe 1", "Recipe 2", "Recipe 3");
