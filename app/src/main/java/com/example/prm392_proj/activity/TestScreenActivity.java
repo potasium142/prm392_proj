@@ -57,6 +57,9 @@ public class TestScreenActivity extends AppCompatActivity {
         var allRecipesIntent = new Intent(this, RecipeListEditableActivity.class);
         allRecipesButton.setOnClickListener(v -> startActivity(allRecipesIntent));
 
+        var addRecipeButton = findViewById(R.id.add_recipe_button);
+        var addRecipeIntent = new Intent(this, RecipeAddNewActivity.class);
+        addRecipeButton.setOnClickListener(v -> startActivity(addRecipeIntent));
 
 
         // Initialize the RecipeRepository
@@ -78,7 +81,8 @@ public class TestScreenActivity extends AppCompatActivity {
         Log.d("TestScreenActivity", "Listing all recipes:");
 
         // Set the desired date format
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",
+                java.util.Locale.getDefault());
 
         for (Recipe recipe : recipes) {
             Date recipeDate = recipe.getCreationDate();
@@ -86,10 +90,14 @@ public class TestScreenActivity extends AppCompatActivity {
             if (recipeDate != null) {
                 // Format the creation date if it's not null
                 String formattedDate = dateFormat.format(recipeDate);
-                Log.d("TestScreenActivity", "Recipe ID: " + recipe.getId() + ", Name: " + recipe.getDishName() + ", Date: " + formattedDate);
+                Log.d("TestScreenActivity",
+                        "Recipe ID: " + recipe.getId() + ", Name: " + recipe.getDishName() +
+                                ", Date: " + formattedDate);
             } else {
                 // Log a message if the creation date is null
-                Log.d("TestScreenActivity", "Recipe ID: " + recipe.getId() + ", Name: " + recipe.getDishName() + ", Date: Not Available");
+                Log.d("TestScreenActivity",
+                        "Recipe ID: " + recipe.getId() + ", Name: " + recipe.getDishName() +
+                                ", Date: Not Available");
             }
         }
     }
