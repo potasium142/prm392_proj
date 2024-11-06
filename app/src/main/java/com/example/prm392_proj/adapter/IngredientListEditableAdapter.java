@@ -64,6 +64,7 @@ public class IngredientListEditableAdapter extends RecyclerView.Adapter<Ingredie
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView ingredientName, ingredientAmount;
         ImageView editButton, deleteButton;
+        Button addMoreButton;
 
         public ViewHolder(View itemView) {
             super(itemView);

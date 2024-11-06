@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,6 +24,7 @@ import java.util.List;
 public class IngredientListEditableFragment extends Fragment {
     List<Ingredient> ingredients;
     IngredientListEditableAdapter adapter;
+    TextView totalIngredient;
 
     public IngredientListEditableFragment(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
@@ -46,6 +49,13 @@ public class IngredientListEditableFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter.setIngredients(ingredients);
+
+        totalIngredient = view.findViewById(R.id.totalIngredient);
+        totalIngredient.setText(String.valueOf(ingredients.size()));
+
+
+        Button addMoreButton = view.findViewById(R.id.addMoreButton);
+        addMoreButton.setOnClickListener(v -> onAddButtonClick());
     }
 
     public void onEditButtonClick(Ingredient ingredient) {
@@ -76,11 +86,13 @@ public class IngredientListEditableFragment extends Fragment {
                 .setMessage("Are you sure you want to delete this ingredient?")
                 .setPositiveButton("Yes", (dialog, which) -> {
                     ingredients.remove(ingredient);
+                    totalIngredient.setText(String.valueOf(ingredients.size()));
                     adapter.notifyDataSetChanged();
 
                     Snackbar.make(getView(), "Ingredient deleted", Snackbar.LENGTH_LONG)
                             .setAction("Undo", v -> {
                                 ingredients.add(position, ingredient);
+                                totalIngredient.setText(String.valueOf(ingredients.size()));
                                 adapter.notifyDataSetChanged();
                             })
                             .setDuration(5000)
@@ -89,5 +101,28 @@ public class IngredientListEditableFragment extends Fragment {
                 .setNegativeButton("No", null)
                 .show();
 
+    }
+
+    public void onAddButtonClick() {
+        Ingredient ingredient = new Ingredient();
+        InputDialog2 inputDialog2 = new InputDialog2(this.getContext(),
+                "Ingredient details");
+        inputDialog2.setOnEnterListener((input, input2) -> {
+            ingredient.setName(input);
+            ingredient.setAmount(input2);
+            ingredients.add(ingredient);
+            totalIngredient.setText(String.valueOf(ingredients.size()));
+            adapter.notifyDataSetChanged();
+        });
+
+        InputValidation inputValidation = new InputValidation("Name");
+        inputValidation.isRequired = true;
+
+        InputValidation inputValidation2 = new InputValidation("Amount");
+        inputValidation2.isRequired = true;
+
+        inputDialog2.setValidation(inputValidation, inputValidation2);
+
+        inputDialog2.show();
     }
 }

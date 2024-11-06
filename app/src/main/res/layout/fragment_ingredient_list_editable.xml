@@ -24,6 +24,7 @@
             app:layout_constraintTop_toBottomOf="@+id/inforUser">
 
             <!-- Serve Column -->
+
             <LinearLayout
                 android:id="@+id/placeServe"
                 android:layout_width="0dp"
@@ -52,6 +53,12 @@
             </LinearLayout>
 
             <!-- Items Column -->
+            <Button
+                android:id="@+id/addMoreButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add more" />
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -60,6 +67,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/totalIngredient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10"
@@ -74,6 +82,7 @@
                     android:layout_height="wrap_content"
                     android:text="Items"
                     android:textColor="@color/gray3" />
+
             </LinearLayout>
 
         </LinearLayout>

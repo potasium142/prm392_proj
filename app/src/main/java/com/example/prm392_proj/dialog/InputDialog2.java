@@ -34,6 +34,13 @@ public class InputDialog2 extends AppCompatActivity {
         init(context);
     }
 
+    public InputDialog2(Context context, String labelTitle) {
+        init(context);
+        this.labelTitle = labelTitle;
+        TextView title = dialog.findViewById(R.id.title);
+        title.setText("Enter " +labelTitle);
+    }
+
     public InputDialog2(Context context, String defaultText, String defaultText2, String labelTitle) {
         init(context);
         inputText.setText(defaultText);
