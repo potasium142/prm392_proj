@@ -29,10 +29,6 @@ import com.example.prm392_proj.model.User;
 
 
 @Database(entities = {Bookmark.class, Ingredient.class, Instruction.class, Rate.class, Recipe.class, User.class}, version = 12, exportSchema = false)
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 @TypeConverters({Converters.class})
 public abstract class DatabaseHelper extends RoomDatabase {
     private static final String DB_NAME = "PRM392_final_project";
