@@ -1,9 +1,12 @@
 package com.example.prm392_proj.model;
 
 import androidx.room.Entity;
+<<<<<<< Updated upstream
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+=======
+>>>>>>> Stashed changes
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +14,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+<<<<<<< Updated upstream
 
 @Getter
 @Setter
@@ -48,6 +52,23 @@ public class Comment implements Serializable {
 
     public void setCommentId(int commentId) {
         this.commentId = commentId;
+=======
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Getter
+@Setter
+@EqualsAndHashCode
+@Entity(primaryKeys = {"userId", "recipeId"}, tableName = "comment")
+public class Comment {
+    private int userId;
+    private int recipeId;
+    private String comment;
+    private int like;
+    private int dislike;
+
+    public Comment(String commentText) {
+>>>>>>> Stashed changes
     }
 
     public int getUserId() {
@@ -58,6 +79,7 @@ public class Comment implements Serializable {
         this.userId = userId;
     }
 
+<<<<<<< Updated upstream
     public String getAvatar() {
         return avatar;
     }
@@ -82,6 +104,8 @@ public class Comment implements Serializable {
         this.profileName = profileName;
     }
 
+=======
+>>>>>>> Stashed changes
     public int getRecipeId() {
         return recipeId;
     }
@@ -90,6 +114,7 @@ public class Comment implements Serializable {
         this.recipeId = recipeId;
     }
 
+<<<<<<< Updated upstream
     public int getLikeCount() {
         return likeCount;
     }
@@ -106,3 +131,30 @@ public class Comment implements Serializable {
         this.dislikeCount = dislikeCount;
     }
 }
+=======
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
+    }
+
+    public int getDislike() {
+        return dislike;
+    }
+
+    public void setDislike(int dislike) {
+        this.dislike = dislike;
+    }
+}
+
+>>>>>>> Stashed changes

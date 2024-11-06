@@ -36,6 +36,7 @@ android {
 
 dependencies {
     implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation ("com.squareup.picasso:picasso:2.71828")
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.annotation)
