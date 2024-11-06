@@ -1,6 +1,7 @@
 package com.example.prm392_proj.frament;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,6 +64,9 @@ public class InstructionListEditableFragment extends Fragment {
         inputDialog.setOnEnterListener((input) -> {
             instruction.setDescription(input);
             adapter.notifyDataSetChanged();
+
+            var sharedPreferences = this.getContext().getSharedPreferences("edit_recipe", Context.MODE_PRIVATE);
+            sharedPreferences.edit().putString("changed", "changed").apply();
         });
 
         InputValidation inputValidation = new InputValidation("Name");
@@ -90,6 +94,9 @@ public class InstructionListEditableFragment extends Fragment {
                             })
                             .setDuration(5000)
                             .show();
+
+                    var sharedPreferences = this.getContext().getSharedPreferences("edit_recipe", Context.MODE_PRIVATE);
+                    sharedPreferences.edit().putString("changed", "changed").apply();
                 })
                 .setNegativeButton("No", null)
                 .show();
@@ -115,6 +122,9 @@ public class InstructionListEditableFragment extends Fragment {
             instructions.add(instruction);
             totalInstruction.setText(String.valueOf(instructions.size()));
             adapter.notifyDataSetChanged();
+
+            var sharedPreferences = this.getContext().getSharedPreferences("edit_recipe", Context.MODE_PRIVATE);
+            sharedPreferences.edit().putString("changed", "changed").apply();
         });
 
         InputValidation inputValidation = new InputValidation("Instruction");

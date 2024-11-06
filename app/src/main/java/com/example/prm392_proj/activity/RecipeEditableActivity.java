@@ -1,5 +1,6 @@
 package com.example.prm392_proj.activity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -7,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.prm392_proj.R;
@@ -19,14 +19,12 @@ import com.example.prm392_proj.model.Recipe;
 import com.example.prm392_proj.model.User;
 import com.example.prm392_proj.repository.IngredientRepository;
 import com.example.prm392_proj.repository.InstructionRepository;
-import com.example.prm392_proj.repository.RecipeRepository;
 import com.example.prm392_proj.repository.UserRepository;
 import com.example.prm392_proj.util.InputValidation;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeEditableActivity extends AppCompatActivity {
@@ -44,9 +42,6 @@ public class RecipeEditableActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         recipe = (Recipe) intent.getSerializableExtra("recipe");
-
-        ImageView backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(v -> finish());
 
         // Set dish name
         dishTittle = findViewById(R.id.dishTitle);
@@ -70,7 +65,11 @@ public class RecipeEditableActivity extends AppCompatActivity {
         List<Ingredient> ingredients = ingredientRepository.getAllIngredientsByRecipeIdSync(recipe.getId());
 
         InstructionRepository instructionRepository = new InstructionRepository(this.getApplication());
-        List<Instruction> instructions = instructionRepository.getAllInstructionsByRecipeIdSync(recipe.getId());
+        List<Instruction> instructions = instructionRepository.getAllInstructionsByRecipeIdSync(
+                recipe.getId());
+
+        var sharedPreferences = getSharedPreferences("edit_recipe", MODE_PRIVATE);
+        sharedPreferences.edit().putString("changed", null).apply();
 
         var adapter = new RecipeEditableViewPagerAdapter(this, ingredients, instructions);
         TabLayout tabLayout = findViewById(R.id.tabLayout);
@@ -86,6 +85,23 @@ public class RecipeEditableActivity extends AppCompatActivity {
                     break;
             }
         }).attach();
+
+        ImageView backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(v -> {
+            String changed = sharedPreferences.getString("changed", null);
+            if (changed.equals("changed")) {
+                new AlertDialog.Builder(this).setTitle("Discard changes?")
+                        .setMessage(
+                                "You have unsaved changes. Are you sure you want to discard them?")
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            finish();
+                        })
+                        .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
+                        .show();
+            } else {
+                finish();
+            }
+        });
     }
 
     public void onEditDishNameButton() {
