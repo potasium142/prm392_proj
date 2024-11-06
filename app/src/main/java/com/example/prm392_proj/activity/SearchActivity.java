@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -39,7 +38,7 @@ public class SearchActivity extends AppCompatActivity implements FilterBottomShe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        RecyclerView recyclerView = findViewById(R.id.ingredientsRecyclerView);
+        RecyclerView recyclerView = findViewById(R.id.instructionsRecyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         recipeRepository = new RecipeRepository(getApplication());

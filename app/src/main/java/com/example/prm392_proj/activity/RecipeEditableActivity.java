@@ -14,9 +14,11 @@ import com.example.prm392_proj.R;
 import com.example.prm392_proj.adapter.RecipeEditableViewPagerAdapter;
 import com.example.prm392_proj.dialog.InputDialog;
 import com.example.prm392_proj.model.Ingredient;
+import com.example.prm392_proj.model.Instruction;
 import com.example.prm392_proj.model.Recipe;
 import com.example.prm392_proj.model.User;
 import com.example.prm392_proj.repository.IngredientRepository;
+import com.example.prm392_proj.repository.InstructionRepository;
 import com.example.prm392_proj.repository.RecipeRepository;
 import com.example.prm392_proj.repository.UserRepository;
 import com.example.prm392_proj.util.InputValidation;
@@ -67,7 +69,10 @@ public class RecipeEditableActivity extends AppCompatActivity {
         IngredientRepository ingredientRepository = new IngredientRepository(this.getApplication());
         List<Ingredient> ingredients = ingredientRepository.getAllIngredientsByRecipeIdSync(recipe.getId());
 
-        var adapter = new RecipeEditableViewPagerAdapter(this, ingredients);
+        InstructionRepository instructionRepository = new InstructionRepository(this.getApplication());
+        List<Instruction> instructions = instructionRepository.getAllInstructionsByRecipeIdSync(recipe.getId());
+
+        var adapter = new RecipeEditableViewPagerAdapter(this, ingredients, instructions);
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         ViewPager2 viewPager = findViewById(R.id.viewPager2);
         viewPager.setAdapter(adapter);

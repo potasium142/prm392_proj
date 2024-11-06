@@ -44,13 +44,13 @@ public class IngredientListEditableFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView recyclerView = view.findViewById(R.id.ingredientsRecyclerView);
+        RecyclerView recyclerView = view.findViewById(R.id.instructionsRecyclerView);
         adapter = new IngredientListEditableAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter.setIngredients(ingredients);
 
-        totalIngredient = view.findViewById(R.id.totalIngredient);
+        totalIngredient = view.findViewById(R.id.totalInstruction);
         totalIngredient.setText(String.valueOf(ingredients.size()));
 
 
