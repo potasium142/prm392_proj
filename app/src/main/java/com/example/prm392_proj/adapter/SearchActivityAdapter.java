@@ -68,14 +68,13 @@ public class SearchActivityAdapter extends RecyclerView.Adapter<SearchActivityAd
         notifyDataSetChanged();
     }
 
-    // Method to filter the recipe list based on search input and date filter
-    public void filter(String query, String dateFilter) {
-        if (query.isEmpty() && dateFilter.equals("All")) {
+    // Method to filter the recipe list based on query, date filter, and star rating filter
+    public void filter(String query, String dateFilter, String starRating) {
+        if (query.isEmpty() && dateFilter.equals("All") && starRating.equals("All")) {
             recipes.clear();
-            recipes.addAll(fullRecipeList); // Reset to full list if query is empty
+            recipes.addAll(fullRecipeList); // Reset to full list if no filter is applied
         } else {
             List<Recipe> filteredList = new ArrayList<>();
-            long currentTime = System.currentTimeMillis();
 
             for (Recipe recipe : fullRecipeList) {
                 boolean matchesQuery = recipe.getDishName().toLowerCase().contains(query.toLowerCase()) ||
@@ -87,17 +86,28 @@ public class SearchActivityAdapter extends RecyclerView.Adapter<SearchActivityAd
 
                 // Handle date filtering
                 if (!dateFilter.equals("All")) {
-                    if (dateFilter.equals("Newest")) {
-                        matchesDate = recipeDate != null && recipeDate.after(new Date(currentTime - 86400000L)); // last 24 hours
-                    } else if (dateFilter.equals("Oldest")) {
-                        matchesDate = recipeDate != null && recipeDate.before(new Date(currentTime - 86400000L)); // recipes older than 24 hours
-                    }
+                    matchesDate = true; // Keep all for date filter and rely on sorting
                 }
 
-                if (matchesQuery && matchesDate) {
+                boolean matchesStarRating = true; // Default to true unless filtering by star rating
+                // Uncomment and modify if implementing star rating filter
+                // if (!starRating.equals("All")) {
+                //     int rating = Integer.parseInt(starRating);
+                //     matchesStarRating = recipe.getRating() == rating;
+                // }
+
+                if (matchesQuery && matchesDate && matchesStarRating) {
                     filteredList.add(recipe);
                 }
             }
+
+            // Apply sorting by date based on the date filter
+            if (dateFilter.equals("Newest")) {
+                filteredList.sort((recipe1, recipe2) -> recipe2.getCreationDate().compareTo(recipe1.getCreationDate())); // Newest first (descending order)
+            } else if (dateFilter.equals("Oldest")) {
+                filteredList.sort((recipe1, recipe2) -> recipe1.getCreationDate().compareTo(recipe2.getCreationDate())); // Oldest first (ascending order)
+            }
+
             recipes.clear();
             recipes.addAll(filteredList);
         }
