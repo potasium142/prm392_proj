@@ -12,19 +12,22 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prm392_proj.R;
+import com.example.prm392_proj.dialog.InputDialog;
+import com.example.prm392_proj.dialog.InputDialog2;
 import com.example.prm392_proj.frament.IngredientListEditableFragment;
 import com.example.prm392_proj.model.Ingredient;
+import com.example.prm392_proj.util.InputValidation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class IngredientListEditableAdapter extends RecyclerView.Adapter<IngredientListEditableAdapter.ViewHolder> {
-    private FragmentActivity ingredientListEditableFragment;
+    private IngredientListEditableFragment ingredientListEditableFragment;
     private List<Ingredient> ingredients = new ArrayList<>();
 
     public IngredientListEditableAdapter() {}
 
-    public IngredientListEditableAdapter(FragmentActivity ingredientListEditableFragment) {
+    public IngredientListEditableAdapter(IngredientListEditableFragment ingredientListEditableFragment) {
         this.ingredientListEditableFragment = ingredientListEditableFragment;
     }
 
@@ -45,6 +48,12 @@ public class IngredientListEditableAdapter extends RecyclerView.Adapter<Ingredie
         Ingredient current = ingredients.get(position);
         holder.ingredientName.setText(current.getName());
         holder.ingredientAmount.setText(String.valueOf(current.getAmount()));
+        holder.editButton.setOnClickListener(v -> {
+            ingredientListEditableFragment.onEditButtonClick(current);
+        });
+        holder.deleteButton.setOnClickListener(v -> {
+            ingredientListEditableFragment.onDeleteButtonClick(position);
+        });
     }
 
     @Override
