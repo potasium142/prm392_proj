@@ -2,10 +2,12 @@ package com.example.prm392_proj.activity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
@@ -19,8 +21,10 @@ import com.example.prm392_proj.model.Recipe;
 import com.example.prm392_proj.model.User;
 import com.example.prm392_proj.repository.IngredientRepository;
 import com.example.prm392_proj.repository.InstructionRepository;
+import com.example.prm392_proj.repository.RecipeRepository;
 import com.example.prm392_proj.repository.UserRepository;
 import com.example.prm392_proj.util.InputValidation;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.squareup.picasso.Picasso;
@@ -32,11 +36,15 @@ public class RecipeEditableActivity extends AppCompatActivity {
     Recipe recipe;
     TextView dishTittle;
     TextView totalTime;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_editable);
+
+        sharedPreferences = getSharedPreferences("edit_recipe", MODE_PRIVATE);
+        sharedPreferences.edit().putString("changed", "").apply();
 
         userRepository = new UserRepository(this.getApplication());
 
@@ -67,9 +75,6 @@ public class RecipeEditableActivity extends AppCompatActivity {
         InstructionRepository instructionRepository = new InstructionRepository(this.getApplication());
         List<Instruction> instructions = instructionRepository.getAllInstructionsByRecipeIdSync(
                 recipe.getId());
-
-        var sharedPreferences = getSharedPreferences("edit_recipe", MODE_PRIVATE);
-        sharedPreferences.edit().putString("changed", null).apply();
 
         var adapter = new RecipeEditableViewPagerAdapter(this, ingredients, instructions);
         TabLayout tabLayout = findViewById(R.id.tabLayout);
@@ -102,6 +107,15 @@ public class RecipeEditableActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        ImageView saveButton = findViewById(R.id.saveButton);
+        saveButton.setOnClickListener(v -> {
+            RecipeRepository recipeRepository = new RecipeRepository(this.getApplication());
+            recipeRepository.update(recipe);
+            sharedPreferences.edit().putString("changed", "").apply();
+
+            Toast.makeText(this, "Recipe saved", Toast.LENGTH_SHORT).show();
+        });
     }
 
     public void onEditDishNameButton() {
@@ -109,6 +123,8 @@ public class RecipeEditableActivity extends AppCompatActivity {
         inputDialog.setOnEnterListener(input -> {
             recipe.setDishName(input);
             dishTittle.setText(input);
+
+            sharedPreferences.edit().putString("changed", "changed").apply();
         });
 
         InputValidation inputValidation = new InputValidation("Dish Name");
@@ -123,6 +139,8 @@ public class RecipeEditableActivity extends AppCompatActivity {
         inputDialog.setOnEnterListener(input -> {
             recipe.setTotalTime(Integer.parseInt(input));
             totalTime.setText(input);
+
+            sharedPreferences.edit().putString("changed", "changed").apply();
         });
 
         InputValidation inputValidation = new InputValidation("Total time");
