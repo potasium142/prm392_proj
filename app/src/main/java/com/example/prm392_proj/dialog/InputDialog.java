@@ -28,6 +28,24 @@ public class InputDialog extends AppCompatActivity {
     String label = "Text";
 
     public InputDialog(Context context) {
+        init(context);
+    }
+
+    public InputDialog(Context context, String defaultText) {
+        init(context);
+        inputText.setText(defaultText);
+    }
+
+    public InputDialog(Context context, String defaultText, String label) {
+        init(context);
+        inputText.setText(defaultText);
+        this.label = label;
+        TextView title = dialog.findViewById(R.id.title);
+        title.setText("Enter " + label);
+        inputLayout.setHint("Enter " + label);
+    }
+
+    private void init(Context context) {
         cancelListener = () -> {
 
         };

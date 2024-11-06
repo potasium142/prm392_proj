@@ -36,15 +36,29 @@ public class RecipeEditableActivity extends AppCompatActivity {
         // Set dish name
         TextView dishTittle = findViewById(R.id.dishTitle);
         dishTittle.setText(recipe.getDishName());
+        ImageButton dishNameEditButton = findViewById(R.id.dishNameEditButton);
+        dishNameEditButton.setOnClickListener(v -> {
+            InputDialog inputDialog = new InputDialog(this, recipe.getDishName());
+            inputDialog.setOnEnterListener(input -> {
+                recipe.setDishName(input);
+                dishTittle.setText(input);
+            });
+
+            InputValidation inputValidation = new InputValidation("Dish Name");
+            inputValidation.isRequired = true;
+            inputDialog.setValidation(inputValidation);
+
+            inputDialog.show();
+        });
 
         TextView totalTime = findViewById(R.id.totalTime);
         totalTime.setText(String.valueOf(recipe.getTotalTime()));
         ImageButton totalTimeEditButton = findViewById(R.id.totalTimeEditButton);
         totalTimeEditButton.setOnClickListener(v -> {
-            InputDialog inputDialog = new InputDialog(this);
+            InputDialog inputDialog = new InputDialog(this, String.valueOf(recipe.getTotalTime()));
             inputDialog.setOnEnterListener(input -> {
                 recipe.setTotalTime(Integer.parseInt(input));
-                totalTime.setText(String.valueOf(recipe.getTotalTime()));
+                totalTime.setText(input);
             });
 
             InputValidation inputValidation = new InputValidation("Total time");
