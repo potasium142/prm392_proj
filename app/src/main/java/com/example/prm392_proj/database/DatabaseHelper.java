@@ -23,7 +23,7 @@ import com.example.prm392_proj.model.Rate;
 import com.example.prm392_proj.model.Recipe;
 import com.example.prm392_proj.model.User;
 
-@Database(entities = {Bookmark.class, Ingredient.class, Instruction.class, Rate.class, Recipe.class, User.class}, version = 5, exportSchema = false)
+@Database(entities = {Bookmark.class, Ingredient.class, Instruction.class, Rate.class, Recipe.class, User.class}, version = 7, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class DatabaseHelper extends RoomDatabase {
     private static final String DB_NAME = "PRM392_final_project";
@@ -43,7 +43,7 @@ public abstract class DatabaseHelper extends RoomDatabase {
 
                 User user = User.builder()
                         .username("admin")
-                        .password("admin")
+                        .password("Tuyen")
                         .profileName("admin")
                         .build();
                 userDao.insert(user);
@@ -54,67 +54,70 @@ public abstract class DatabaseHelper extends RoomDatabase {
                         .dishName("Mediterranean Baked Cod with Lemon")
                         .picture("https://www.allrecipes.com/thmb/1blq_he4MHCz2acTU7arELCnGrI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8576313_Mediterranean-Baked-Cod-with-Lemon_Brenda-Venable_4x3-b34ff9cd504b4aca9ba74d5ca8ba0c4d.jpg")
                         .description("This Mediterranean baked cod with lemon, deliciously seasoned with fresh Mediterranean herbs, garlic, and lemon, is ready in 25 minutes, start to finish. Serve with your favorite potato dish, and a green vegetable or salad, and your meal is done.")
+                        .time("20")
                         .build();
                 recipeDao.insert(recipe);
 
-                Ingredient ingredient = Ingredient.builder()
-                        .recipeId(recipe.getId())
+                int recipeId = recipe.getId();
+
+                Ingredient ingredient1 = Ingredient.builder()
+                        .recipeId(recipeId)
                         .name("cod filets")
                         .amount("4 (6 ounce)")
                         .build();
-                ingredientDao.insert(ingredient);
+                ingredientDao.insert(ingredient1);
 
-                ingredient = Ingredient.builder()
-                        .recipeId(recipe.getId())
+                Ingredient ingredient2 = Ingredient.builder()
+                        .recipeId(recipeId)
                         .name("unsalted butter, softened")
                         .amount("3 tablespoons")
                         .build();
-                ingredientDao.insert(ingredient);
+                ingredientDao.insert(ingredient2);
 
-                ingredient = Ingredient.builder()
-                        .recipeId(recipe.getId())
+                Ingredient ingredient3 = Ingredient.builder()
+                        .recipeId(recipeId)
                         .name("finely minced fresh garlic")
                         .amount("1 tablespoon")
                         .build();
-                ingredientDao.insert(ingredient);
+                ingredientDao.insert(ingredient3);
 
-                ingredient = Ingredient.builder()
-                        .recipeId(recipe.getId())
+                Ingredient ingredient4 = Ingredient.builder()
+                        .recipeId(recipeId)
                         .name("minced fresh oregano")
                         .amount("2 teaspoons")
                         .build();
-                ingredientDao.insert(ingredient);
+                ingredientDao.insert(ingredient4);
 
                 Instruction instruction = Instruction.builder()
-                        .recipeId(recipe.getId())
+                        .recipeId(recipeId)
                         .index(1)
                         .description("Preheat the oven to 400 degrees F (200 degrees C).")
                         .build();
                 instructionDao.insert(instruction);
 
                 instruction = Instruction.builder()
-                        .recipeId(recipe.getId())
+                        .recipeId(recipeId)
                         .index(2)
                         .description("Place softened butter, minced garlic, parsley, oregano, and thyme or rosemary on a cutting board. Using a sharp knife, cut herbs and garlic into each other and the butter, cutting and mixing as you go. Add pink salt, black pepper, and paprika, and mix until well blended.")
                         .build();
                 instructionDao.insert(instruction);
 
                 instruction = Instruction.builder()
-                        .recipeId(recipe.getId())
+                        .recipeId(recipeId)
                         .index(3)
                         .description("Pat cod filets dry. In a 12x18-inch casserole or baking pan, place each filet on top of 2 lemon slices. Evenly divide herb butter mixture among the filets; use a fork or offset spatula to spread herb butter over filets. Top each filet with 2 remaining lemon slices.")
                         .build();
                 instructionDao.insert(instruction);
 
                 instruction = Instruction.builder()
-                        .recipeId(recipe.getId())
+                        .recipeId(recipeId)
                         .index(4)
                         .description("Bake in the preheated oven until cod flakes easily with a fork, 13 to 15 minutes. See note.")
                         .build();
                 instructionDao.insert(instruction);
 
                 instruction = Instruction.builder()
-                        .recipeId(recipe.getId())
+                        .recipeId(recipeId)
                         .index(5)
                         .description("To serve, drizzle each filet with extra virgin olive oil, and garnish with fresh parsley, if desired.")
                         .build();
@@ -127,11 +130,13 @@ public abstract class DatabaseHelper extends RoomDatabase {
         if (INSTANCE == null) {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(), DatabaseHelper.class, DB_NAME)
                     .allowMainThreadQueries()
+                    .fallbackToDestructiveMigration() // Xóa và tạo lại DB nếu có thay đổi schema
                     .addCallback(sRoomDatabaseCallback)
                     .build();
         }
         return INSTANCE;
     }
+
 
     public abstract UserDao userDAO();
 

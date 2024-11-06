@@ -28,13 +28,14 @@ public class Recipe implements Serializable {
     private String picture;
     private String description;
     private Date creationDate;
+    private String time;
 
-    public Recipe(int userCreatorId, String dishName, String picture, String description) {
+    public Recipe(int userCreatorId, String dishName, String picture, String description, String time) {
         this.userCreatorId = userCreatorId;
         this.dishName = dishName;
         this.picture = picture;
         this.description = description;
         this.creationDate = new Date();
+        this.time = time;
     }
-
 }

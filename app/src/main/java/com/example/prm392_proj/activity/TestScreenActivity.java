@@ -48,5 +48,9 @@ public class TestScreenActivity extends AppCompatActivity {
         var allRecipesButton = findViewById(R.id.all_recipes_button);
         var allRecipesIntent = new Intent(this, RecipeListEditableActivity.class);
         allRecipesButton.setOnClickListener(v -> startActivity(allRecipesIntent));
+
+        var showRecipeJumpBtn = findViewById(R.id.show_recipe_jump);
+        var showRecipeJumpBtnIntent = new Intent(this, TestActivity.class);
+        showRecipeJumpBtn.setOnClickListener(v -> startActivity(showRecipeJumpBtnIntent));
     }
 }

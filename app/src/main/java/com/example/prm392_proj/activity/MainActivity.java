@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-
         Button textView3 = findViewById(R.id.button);
         textView3.setOnClickListener(v ->
                 {
@@ -34,5 +33,6 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
     }
+
 
 }
