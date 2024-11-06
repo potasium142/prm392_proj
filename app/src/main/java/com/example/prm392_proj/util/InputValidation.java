@@ -10,26 +10,28 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.time.format.DateTimeFormatter;
 
 public class InputValidation {
+    public String label;
+    public boolean isRequired = false;
+    public boolean isNumber = false;
+    public boolean isInteger = false;
+    public boolean isEmail = false;
+    public boolean isPositiveNumber = false;
+    public boolean isNegativeNumber = false;
+    public boolean isNotPositiveNumber = false;
+    public boolean isNotNegativeNumber = false;
+    public boolean isGreaterThanOne = false;
+    public boolean isDate = false;
+    public String datePattern = "dd/MM/yyyy";
     TextInputLayout inputLayout;
     TextInputEditText inputText;
-    String label;
-    boolean isRequired = false;
-    boolean isNumber = false;
-    boolean isInteger = false;
-    boolean isEmail = false;
-    boolean isPositiveNumber = false;
-    boolean isNegativeNumber = false;
-    boolean isNotPositiveNumber = false;
-    boolean isNotNegativeNumber = false;
-    boolean isGreaterThanOne = false;
-    boolean isDate = false;
-    String datePattern = "dd/MM/yyyy";
 
-    public InputValidation(TextInputLayout inputLayout, TextInputEditText inputText, String label) {
+    public InputValidation(String label) {
+        this.label = label;
+    }
+
+    public void setInputLayout(TextInputLayout inputLayout, TextInputEditText inputText) {
         this.inputLayout = inputLayout;
         this.inputText = inputText;
-        this.label = label;
-
         inputText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -46,6 +48,14 @@ public class InputValidation {
                 validate();
             }
         });
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     public boolean validate() {

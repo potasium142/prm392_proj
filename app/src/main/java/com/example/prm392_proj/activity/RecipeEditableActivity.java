@@ -15,6 +15,7 @@ import com.example.prm392_proj.dialog.InputDialog;
 import com.example.prm392_proj.model.Recipe;
 import com.example.prm392_proj.model.User;
 import com.example.prm392_proj.repository.UserRepository;
+import com.example.prm392_proj.util.InputValidation;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.squareup.picasso.Picasso;
@@ -45,8 +46,14 @@ public class RecipeEditableActivity extends AppCompatActivity {
                 recipe.setTotalTime(Integer.parseInt(input));
                 totalTime.setText(String.valueOf(recipe.getTotalTime()));
             });
-            inputDialog.show();
 
+            InputValidation inputValidation = new InputValidation("Total time");
+            inputValidation.isRequired = true;
+            inputValidation.isInteger = true;
+            inputValidation.isPositiveNumber = true;
+            inputDialog.setValidation(inputValidation);
+
+            inputDialog.show();
         });
 
         ImageView dishImageView = findViewById(R.id.foodImage);
