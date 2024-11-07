@@ -43,7 +43,7 @@ public class TestActivity extends AppCompatActivity {
         // Khởi tạo repository và adapter
         recipeRepository = new RecipeRepository(this.getApplication());
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        adapter = new Test(this, this);
+        adapter = new Test(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
