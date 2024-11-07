@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -177,6 +178,11 @@ public class RecipeProcedure extends AppCompatActivity {
             intent.putExtra("USER_ID", userId);
             startActivity(intent);
         });
+        ImageView imageView2 = findViewById(R.id.menuButton);
+        imageView2.setOnClickListener(view -> {
+            Intent intent = new Intent(RecipeProcedure.this, ReviewActivity.class);
+            startActivity(intent);
+        });
 
 
         ImageView profileImage = findViewById(R.id.profileImage);
@@ -192,12 +198,12 @@ public class RecipeProcedure extends AppCompatActivity {
 
 
         //Button back
-        ImageView backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+//        ImageView backButton = findViewById(R.id.backButton);
+//        backButton.setOnClickListener(new View().OnClickListener(){
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
     }
 }
