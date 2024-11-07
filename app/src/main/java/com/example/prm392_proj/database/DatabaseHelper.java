@@ -29,6 +29,12 @@ import com.example.prm392_proj.model.Rate;
 import com.example.prm392_proj.model.Recipe;
 import com.example.prm392_proj.model.User;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 @Database(entities = {Bookmark.class, Ingredient.class, Instruction.class, Rate.class, Recipe.class, User.class, Comment.class}, version = 12, exportSchema = false)
 @TypeConverters({Converters.class})
@@ -73,7 +79,6 @@ public abstract class DatabaseHelper extends RoomDatabase {
                         .userCreatorId(user.getId())
                         .totalTime(10)
                         .dishName("Mediterranean Baked Cod with Lemon")
-
                         .picture("https://www.allrecipes.com/thmb/1blq_he4MHCz2acTU7arELCnGrI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8576313_Mediterranean-Baked-Cod-with-Lemon_Brenda-Venable_4x3-b34ff9cd504b4aca9ba74d5ca8ba0c4d.jpg")
                         .description("This Mediterranean baked cod with lemon, deliciously seasoned with fresh Mediterranean herbs, garlic, and lemon, is ready in 25 minutes, start to finish. Serve with your favorite potato dish, and a green vegetable or salad, and your meal is done.")
                         .creationDate(tempDate)
@@ -169,38 +174,41 @@ public abstract class DatabaseHelper extends RoomDatabase {
 
                 Recipe recipe2 = Recipe.builder()
                         .userCreatorId(user2.getId())
-                        .dishName("Pro Mediterranean Baked Cod with Lemon")
-                        .picture("https://www.allrecipes.com/thmb/1blq_he4MHCz2acTU7arELCnGrI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8576313_Mediterranean-Baked-Cod-with-Lemon_Brenda-Venable_4x3-b34ff9cd504b4aca9ba74d5ca8ba0c4d.jpg")
-                        .description("This Mediterranean baked cod with lemon, deliciously seasoned with fresh Mediterranean herbs, garlic, and lemon, is ready in 25 minutes, start to finish. Serve with your favorite potato dish, and a green vegetable or salad, and your meal is done.")
+                        .dishName("Chili Dog Mac and Cheese")
+                        .picture(
+                                "https://www.allrecipes.com/thmb/CkC2qmhcruDB5lDVwu6lW_jGn2A=/0x512/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8348272_Chili-Dog-Mac-and-Cheese_Chef-John_4x3-04dc2ab0533e45eeb2813509082d4867.jpg")
+                        .description(
+                                "This chili dog mac and cheese combines two of my favorite things to eat—chili dogs and mac and cheese—and manages not to taste all that much like either one, while being wildly successful at being stupendously delicious.")
                         .creationDate(new Date())
+                        .totalTime(80)
                         .build();
                 recipeId = recipeDao.insert(recipe2);
                 recipe2.setId(Integer.parseInt(String.valueOf(recipeId)));
 
                 Ingredient ingredient2 = Ingredient.builder()
                         .recipeId(recipe2.getId())
-                        .name("cod filets")
-                        .amount("4 (6 ounce)")
-                        .build();
-                ingredientDao.insert(ingredient2);
-
-                ingredient2 = Ingredient.builder()
-                        .recipeId(recipe2.getId())
-                        .name("unsalted butter, softened")
-                        .amount("3 tablespoons")
-                        .build();
-                ingredientDao.insert(ingredient2);
-
-                ingredient2 = Ingredient.builder()
-                        .recipeId(recipe2.getId())
-                        .name("finely minced fresh garlic")
+                        .name("olive oil")
                         .amount("1 tablespoon")
                         .build();
                 ingredientDao.insert(ingredient2);
 
                 ingredient2 = Ingredient.builder()
                         .recipeId(recipe2.getId())
-                        .name("minced fresh oregano")
+                        .name("ground beef")
+                        .amount("1 pound")
+                        .build();
+                ingredientDao.insert(ingredient2);
+
+                ingredient2 = Ingredient.builder()
+                        .recipeId(recipe2.getId())
+                        .name("chili powder")
+                        .amount("3 tablespoons")
+                        .build();
+                ingredientDao.insert(ingredient2);
+
+                ingredient2 = Ingredient.builder()
+                        .recipeId(recipe2.getId())
+                        .name("ground cumin")
                         .amount("2 teaspoons")
                         .build();
                 ingredientDao.insert(ingredient2);
@@ -208,35 +216,39 @@ public abstract class DatabaseHelper extends RoomDatabase {
                 Instruction instruction2 = Instruction.builder()
                         .recipeId(recipe2.getId())
                         .index(1)
-                        .description("Preheat the oven to 400 degrees F (200 degrees C).")
+                        .description(
+                                "Add olive oil to a large pot and place over high heat. Add beef; cook and stir, breaking up with a spoon or spatula, about 2 minutes. Add onions and salt, and cook, stirring, until beef is crumbly, and onions turn translucent, about 5 minutes.")
                         .build();
                 instructionDao.insert(instruction2);
 
                 instruction2 = Instruction.builder()
                         .recipeId(recipe2.getId())
                         .index(2)
-                        .description("Place softened butter, minced garlic, parsley, oregano, and thyme or rosemary on a cutting board. Using a sharp knife, cut herbs and garlic into each other and the butter, cutting and mixing as you go. Add pink salt, black pepper, and paprika, and mix until well blended.")
+                        .description(
+                                "Add the chili powder, cumin, paprika, black pepper, cinnamon, cayenne, dried oregano, and garlic. Cook, stirring, for about 2 minutes.")
                         .build();
                 instructionDao.insert(instruction2);
 
                 instruction2 = Instruction.builder()
                         .recipeId(recipe2.getId())
                         .index(3)
-                        .description("Pat cod filets dry. In a 12x18-inch casserole or baking pan, place each filet on top of 2 lemon slices. Evenly divide herb butter mixture among the filets; use a fork or offset spatula to spread herb butter over filets. Top each filet with 2 remaining lemon slices.")
+                        .description(
+                                "Add peppers, sliced hot dogs, crushed tomatoes, and water. Stir together; bring the mixture to a simmer. Reduce heat to medium-low and simmer, stirring occasionally, until cooked to your taste, at least 30 minutes. Taste and adjust seasoning.")
                         .build();
                 instructionDao.insert(instruction2);
 
                 instruction2 = Instruction.builder()
                         .recipeId(recipe2.getId())
                         .index(4)
-                        .description("Bake in the preheated oven until cod flakes easily with a fork, 13 to 15 minutes. See note.")
+                        .description(
+                                "Once chili is nearly ready, fill a large pot with lightly salted water and bring to a rolling boil. Stir in macaroni and return to a boil. Cook pasta uncovered, stirring occasionally, 1 minute less than specified in package directions, until not quite tender, and still firm to the bite, about 8 to 11 minutes.")
                         .build();
                 instructionDao.insert(instruction2);
 
                 instruction2 = Instruction.builder()
                         .recipeId(recipe2.getId())
                         .index(5)
-                        .description("To serve, drizzle each filet with extra virgin olive oil, and garnish with fresh parsley, if desired.")
+                        .description("Meanwhile, preheat the oven to 400 degrees F (200 degrees C).")
                         .build();
                 instructionDao.insert(instruction2);
 
@@ -244,7 +256,6 @@ public abstract class DatabaseHelper extends RoomDatabase {
             });
         }
     };
-
 
     public static DatabaseHelper getInstance(Context context) {
         if (INSTANCE == null) {

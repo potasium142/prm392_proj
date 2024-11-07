@@ -1,15 +1,9 @@
 package com.example.prm392_proj.activity;
 
 import android.app.AlertDialog;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
-import android.webkit.MimeTypeMap;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,19 +23,16 @@ import com.example.prm392_proj.repository.IngredientRepository;
 import com.example.prm392_proj.repository.InstructionRepository;
 import com.example.prm392_proj.repository.RecipeRepository;
 import com.example.prm392_proj.repository.UserRepository;
-import com.example.prm392_proj.s3.S3ClientProvider;
 import com.example.prm392_proj.util.InputValidation;
-import com.example.prm392_proj.util.RandomAlphaDigit;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.squareup.picasso.Picasso;
 
-import java.io.File;
+import java.util.Date;
 import java.util.List;
 
-public class RecipeEditableActivity extends AppCompatActivity {
+public class RecipeAddNewActivity extends AppCompatActivity {
     public static final int REQUEST_CHANGE_IMAGE = 500;
-
     UserRepository userRepository;
     Recipe recipe;
     TextView dishTittle;
@@ -51,15 +42,33 @@ public class RecipeEditableActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipe_editable);
+        setContentView(R.layout.activity_recipe_add_new);
 
-        Intent intent = getIntent();
-        recipe = (Recipe) intent.getSerializableExtra("recipe");
+        userRepository = new UserRepository(this.getApplication());
+
+        var sharedPreferencesUser = getSharedPreferences("vclclgtclgmcs", MODE_PRIVATE);
+        String username = sharedPreferencesUser.getString("USERNAME", "null");
+        if (username == null) {
+            username = "admin";
+        }
+        User user = userRepository.getUserByUsername(username);
+        if (user == null) {
+            finish();
+        }
+
+        RecipeRepository recipeRepository = new RecipeRepository(this.getApplication());
+        recipe = Recipe.builder()
+                .userCreatorId(user.getId())
+                .totalTime(10)
+                .dishName("Click edit to change name")
+                .picture(
+                        "https://www.allrecipes.com/thmb/1blq_he4MHCz2acTU7arELCnGrI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8576313_Mediterranean-Baked-Cod-with-Lemon_Brenda-Venable_4x3-b34ff9cd504b4aca9ba74d5ca8ba0c4d.jpg")
+                .description("A recipe")
+                .creationDate(new Date())
+                .build();
 
         sharedPreferences = getSharedPreferences("edit_recipe", MODE_PRIVATE);
         sharedPreferences.edit().putString("changed", "").apply();
-
-        userRepository = new UserRepository(this.getApplication());
 
         // Set dish name
         dishTittle = findViewById(R.id.dishTitle);
@@ -75,7 +84,6 @@ public class RecipeEditableActivity extends AppCompatActivity {
         ImageView dishImageView = findViewById(R.id.foodImage);
         Picasso.get().load(recipe.getPicture()).into(dishImageView);
 
-        User user = userRepository.getUserById(recipe.getUserCreatorId());
         TextView userChannel = findViewById(R.id.userChannel);
         userChannel.setText(user.getProfileName());
 
@@ -127,9 +135,10 @@ public class RecipeEditableActivity extends AppCompatActivity {
 
         ImageView saveButton = findViewById(R.id.saveButton);
         saveButton.setOnClickListener(v -> {
-            RecipeRepository recipeRepository = new RecipeRepository(this.getApplication());
-            recipeRepository.update(recipe);
+            Long recipeId = recipeRepository.insert(recipe);
+            recipe.setId(Math.toIntExact(recipeId));
             sharedPreferences.edit().putString("changed", "").apply();
+
 
             ingredientRepository.deleteAllIngredientsByRecipeId(recipe.getId());
             ingredients.forEach(ingredient -> {
@@ -195,6 +204,5 @@ public class RecipeEditableActivity extends AppCompatActivity {
             }
         }
     }
-
 }
 

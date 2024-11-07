@@ -62,6 +62,18 @@ public class TestScreenActivity extends AppCompatActivity {
         var commentIntent = new Intent(this, ReviewActivity.class);
         commentButton.setOnClickListener(v -> startActivity(commentIntent));
 
+        var addRecipeButton = findViewById(R.id.add_recipe_button);
+        var addRecipeIntent = new Intent(this, RecipeAddNewActivity.class);
+        addRecipeButton.setOnClickListener(v -> startActivity(addRecipeIntent));
+
+
+        var notificationJumpBtn = findViewById(R.id.notificationJump);
+        var notificationJumpIntent = new Intent(this, NotificationActivity.class);
+        notificationJumpBtn.setOnClickListener(v -> startActivity(notificationJumpIntent));
+
+        var showRecipeJumpBtn = findViewById(R.id.show_recipe_jump);
+        var showRecipeJumpBtnIntent = new Intent(this, TestActivity.class);
+        showRecipeJumpBtn.setOnClickListener(v -> startActivity(showRecipeJumpBtnIntent));
 
         // Initialize the RecipeRepository
         recipeRepository = new RecipeRepository(getApplication());
@@ -72,7 +84,6 @@ public class TestScreenActivity extends AppCompatActivity {
                 logAllRecipes(recipes); // Call method to log the list of recipes
             }
         });
-
     }
 
     // Method to log all recipes from the repository
@@ -82,7 +93,8 @@ public class TestScreenActivity extends AppCompatActivity {
         Log.d("TestScreenActivity", "Listing all recipes:");
 
         // Set the desired date format
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",
+                java.util.Locale.getDefault());
 
         for (Recipe recipe : recipes) {
             Date recipeDate = recipe.getCreationDate();
@@ -90,10 +102,14 @@ public class TestScreenActivity extends AppCompatActivity {
             if (recipeDate != null) {
                 // Format the creation date if it's not null
                 String formattedDate = dateFormat.format(recipeDate);
-                Log.d("TestScreenActivity", "Recipe ID: " + recipe.getId() + ", Name: " + recipe.getDishName() + ", Date: " + formattedDate);
+                Log.d("TestScreenActivity",
+                        "Recipe ID: " + recipe.getId() + ", Name: " + recipe.getDishName() +
+                                ", Date: " + formattedDate);
             } else {
                 // Log a message if the creation date is null
-                Log.d("TestScreenActivity", "Recipe ID: " + recipe.getId() + ", Name: " + recipe.getDishName() + ", Date: Not Available");
+                Log.d("TestScreenActivity",
+                        "Recipe ID: " + recipe.getId() + ", Name: " + recipe.getDishName() +
+                                ", Date: Not Available");
             }
         }
     }
