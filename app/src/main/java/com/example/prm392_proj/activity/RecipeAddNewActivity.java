@@ -28,8 +28,6 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.squareup.picasso.Picasso;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -50,7 +48,9 @@ public class RecipeAddNewActivity extends AppCompatActivity {
 
         var sharedPreferencesUser = getSharedPreferences("vclclgtclgmcs", MODE_PRIVATE);
         String username = sharedPreferencesUser.getString("USERNAME", "null");
-        username = "admin";
+        if (username == null) {
+            username = "admin";
+        }
         User user = userRepository.getUserByUsername(username);
         if (user == null) {
             finish();
@@ -61,7 +61,8 @@ public class RecipeAddNewActivity extends AppCompatActivity {
                 .userCreatorId(user.getId())
                 .totalTime(10)
                 .dishName("Click edit to change name")
-                .picture("https://www.allrecipes.com/thmb/1blq_he4MHCz2acTU7arELCnGrI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8576313_Mediterranean-Baked-Cod-with-Lemon_Brenda-Venable_4x3-b34ff9cd504b4aca9ba74d5ca8ba0c4d.jpg")
+                .picture(
+                        "https://www.allrecipes.com/thmb/1blq_he4MHCz2acTU7arELCnGrI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8576313_Mediterranean-Baked-Cod-with-Lemon_Brenda-Venable_4x3-b34ff9cd504b4aca9ba74d5ca8ba0c4d.jpg")
                 .description("A recipe")
                 .creationDate(new Date())
                 .build();
