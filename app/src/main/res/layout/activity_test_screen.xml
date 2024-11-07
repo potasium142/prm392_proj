@@ -65,6 +65,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add recipe" />
+
+        <Button
+            android:id="@+id/notificationJump"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notifications" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
