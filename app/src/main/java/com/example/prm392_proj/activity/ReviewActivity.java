@@ -39,6 +39,7 @@ public class ReviewActivity extends AppCompatActivity {
         rcvComment.setLayoutManager(new LinearLayoutManager(this));
         rcvComment.setAdapter(commentAdapter);
 
+
         buttonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,30 +48,58 @@ public class ReviewActivity extends AppCompatActivity {
         });
     }
 
+
+
     private void init() {
         editTextReview = findViewById(R.id.comment_input);
         buttonSend = findViewById(R.id.send_button);
         rcvComment = findViewById(R.id.rcv_comment);
     }
 
-    private void addComment() {
-        String commentText = editTextReview.getText().toString().trim();
-        if (commentText.isEmpty()) {
-            Toast.makeText(this, "Please enter a comment", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // Tạo Comment mới và lưu vào cơ sở dữ liệu
-        Comment comment = new Comment();
-        DatabaseHelper.getInstance(this).commentDao().insert(comment);
-
-        // Cập nhật danh sách và thông báo cho Adapter
-        commentList = DatabaseHelper.getInstance(this).commentDao().getCommentsByRecipeId(recipeId);
-        commentAdapter.setCommentList(commentList);
-        commentAdapter.notifyDataSetChanged();
-
-        // Xóa ô nhập liệu sau khi thêm bình luận
-        editTextReview.setText("");
-        Toast.makeText(this, "Comment added", Toast.LENGTH_SHORT).show();
+//    private void addComment() {
+//        String commentText = editTextReview.getText().toString().trim();
+//        if (commentText.isEmpty()) {
+//            Toast.makeText(this, "Please enter a comment", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//
+//        // Tạo Comment mới và lưu vào cơ sở dữ liệu
+//        Comment comment = new Comment();
+//        DatabaseHelper.getInstance(this).commentDao().insert(comment);
+//
+//        // Cập nhật danh sách và thông báo cho Adapter
+//        commentList = DatabaseHelper.getInstance(this).commentDao().getCommentsByRecipeId(recipeId);
+//        commentAdapter.setCommentList(commentList);
+//        commentAdapter.notifyDataSetChanged();
+//
+//        // Xóa ô nhập liệu sau khi thêm bình luận
+//        editTextReview.setText("");
+//        Toast.makeText(this, "Comment added", Toast.LENGTH_SHORT).show();
+//    }
+private void addComment() {
+    String commentText = editTextReview.getText().toString().trim();
+    if (commentText.isEmpty()) {
+        Toast.makeText(this, "Please enter a comment", Toast.LENGTH_SHORT).show();
+        return;
     }
+
+    // Tạo Comment mới
+    Comment comment = new Comment();
+    comment.setUserId(comment.getUserId());  // Đảm bảo `currentUserId` đã được gán đúng
+    comment.setRecipeId(recipeId);
+    comment.setComment(commentText);
+
+    // Nếu chưa có, thêm bình luận mới vào cơ sở dữ liệu
+    DatabaseHelper.getInstance(this).commentDao().insert(comment);
+
+    // Cập nhật danh sách và thông báo cho Adapter
+    commentList = DatabaseHelper.getInstance(this).commentDao().getCommentsByRecipeId(recipeId);
+    commentAdapter.setCommentList(commentList);
+    commentAdapter.notifyDataSetChanged();
+
+    // Xóa ô nhập liệu sau khi thêm bình luận
+    editTextReview.setText("");
+    Toast.makeText(this, "Comment added", Toast.LENGTH_SHORT).show();
+}
+
 }

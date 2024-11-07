@@ -2,6 +2,7 @@ package com.example.prm392_proj.model;
 
 
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,8 +17,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode
-@Entity(primaryKeys = {"userId", "recipeId"}, tableName = "comment")
+@Entity(tableName = "comment")
 public class Comment {
+    @PrimaryKey(autoGenerate = true)
+    private int commentid;
     private int userId;
     private int recipeId;
     private String comment;

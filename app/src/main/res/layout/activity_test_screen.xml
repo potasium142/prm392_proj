@@ -59,6 +59,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="All recipes" />
+        <Button
+            android:id="@+id/testcomment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comment" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

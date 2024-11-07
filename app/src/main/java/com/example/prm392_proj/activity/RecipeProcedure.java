@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.prm392_proj.R;
+import com.example.prm392_proj.model.Comment;
 
 public class RecipeProcedure extends AppCompatActivity {
 
@@ -26,7 +27,14 @@ public class RecipeProcedure extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        ImageView imageView1 = findViewById(R.id.menuButton);
+        imageView1.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View view) {
+                                              Intent intent = new Intent(RecipeProcedure.this, Comment.class);
+                                              startActivity(intent);
+                                          }
+                                      });
         //Button go to BookMark page
         ImageView imageView = findViewById(R.id.iconBookMark);
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -36,6 +44,8 @@ public class RecipeProcedure extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
         //Button back
         ImageView backButton = findViewById(R.id.backButton);

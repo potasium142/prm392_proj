@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.prm392_proj.R;
+import com.example.prm392_proj.model.Comment;
 import com.example.prm392_proj.model.Recipe;
 import com.example.prm392_proj.repository.RecipeRepository;
 
@@ -57,6 +58,9 @@ public class TestScreenActivity extends AppCompatActivity {
         var allRecipesIntent = new Intent(this, RecipeListEditableActivity.class);
         allRecipesButton.setOnClickListener(v -> startActivity(allRecipesIntent));
 
+        var commentButton = findViewById(R.id.testcomment);
+        var commentIntent = new Intent(this, ReviewActivity.class);
+        commentButton.setOnClickListener(v -> startActivity(commentIntent));
 
 
         // Initialize the RecipeRepository
