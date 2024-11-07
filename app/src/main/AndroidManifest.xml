@@ -27,6 +27,9 @@
             android:name=".activity.NotificationActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.EditImageUrlActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ChangePasswordActivity"
             android:exported="false" />
         <activity
