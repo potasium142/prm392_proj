@@ -27,6 +27,10 @@ import com.example.prm392_proj.model.Rate;
 import com.example.prm392_proj.model.Recipe;
 import com.example.prm392_proj.model.User;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 410f8cb39d84375a078a599fc10aebb025042f5c
 @Database(entities = {Bookmark.class, Ingredient.class, Instruction.class, Rate.class, Recipe.class, User.class}, version = 12, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class DatabaseHelper extends RoomDatabase {
@@ -69,72 +73,73 @@ public abstract class DatabaseHelper extends RoomDatabase {
                         .dishName("Mediterranean Baked Cod with Lemon")
                         .picture("https://www.allrecipes.com/thmb/1blq_he4MHCz2acTU7arELCnGrI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8576313_Mediterranean-Baked-Cod-with-Lemon_Brenda-Venable_4x3-b34ff9cd504b4aca9ba74d5ca8ba0c4d.jpg")
                         .description("This Mediterranean baked cod with lemon, deliciously seasoned with fresh Mediterranean herbs, garlic, and lemon, is ready in 25 minutes, start to finish. Serve with your favorite potato dish, and a green vegetable or salad, and your meal is done.")
+<<<<<<< HEAD
                         .time("20")
+=======
+>>>>>>> 410f8cb39d84375a078a599fc10aebb025042f5c
                         .creationDate(tempDate)
 
                         .build();
                 recipeDao.insert(recipe);
 
-                int recipeId = recipe.getId();
-
-                Ingredient ingredient1 = Ingredient.builder()
-                        .recipeId(recipeId)
+                Ingredient ingredient = Ingredient.builder()
+                        .recipeId(recipe.getId())
                         .name("cod filets")
                         .amount("4 (6 ounce)")
                         .build();
-                ingredientDao.insert(ingredient1);
+                ingredientDao.insert(ingredient);
 
-                Ingredient ingredient2 = Ingredient.builder()
-                        .recipeId(recipeId)
+                ingredient = Ingredient.builder()
+                        .recipeId(recipe.getId())
                         .name("unsalted butter, softened")
                         .amount("3 tablespoons")
                         .build();
-                ingredientDao.insert(ingredient2);
+                ingredientDao.insert(ingredient);
 
-                Ingredient ingredient3 = Ingredient.builder()
-                        .recipeId(recipeId)
+                ingredient = Ingredient.builder()
+                        .recipeId(recipe.getId())
                         .name("finely minced fresh garlic")
                         .amount("1 tablespoon")
                         .build();
-                ingredientDao.insert(ingredient3);
+                ingredientDao.insert(ingredient);
 
-                Ingredient ingredient4 = Ingredient.builder()
-                        .recipeId(recipeId)
+                ingredient = Ingredient.builder()
+                        .recipeId(recipe.getId())
                         .name("minced fresh oregano")
                         .amount("2 teaspoons")
                         .build();
-                ingredientDao.insert(ingredient4);
+                ingredientDao.insert(ingredient);
 
                 Instruction instruction = Instruction.builder()
-                        .recipeId(recipeId)
+                        .recipeId(recipe.getId())
                         .index(1)
                         .description("Preheat the oven to 400 degrees F (200 degrees C).")
                         .build();
                 instructionDao.insert(instruction);
 
                 instruction = Instruction.builder()
-                        .recipeId(recipeId)
+                        .recipeId(recipe.getId())
                         .index(2)
                         .description("Place softened butter, minced garlic, parsley, oregano, and thyme or rosemary on a cutting board. Using a sharp knife, cut herbs and garlic into each other and the butter, cutting and mixing as you go. Add pink salt, black pepper, and paprika, and mix until well blended.")
                         .build();
                 instructionDao.insert(instruction);
 
                 instruction = Instruction.builder()
-                        .recipeId(recipeId)
+                        .recipeId(recipe.getId())
                         .index(3)
                         .description("Pat cod filets dry. In a 12x18-inch casserole or baking pan, place each filet on top of 2 lemon slices. Evenly divide herb butter mixture among the filets; use a fork or offset spatula to spread herb butter over filets. Top each filet with 2 remaining lemon slices.")
                         .build();
                 instructionDao.insert(instruction);
 
                 instruction = Instruction.builder()
-                        .recipeId(recipeId)
+                        .recipeId(recipe.getId())
                         .index(4)
                         .description("Bake in the preheated oven until cod flakes easily with a fork, 13 to 15 minutes. See note.")
                         .build();
                 instructionDao.insert(instruction);
 
                 instruction = Instruction.builder()
-                        .recipeId(recipeId)
+                        .recipeId(recipe.getId())
                         .index(5)
                         .description("To serve, drizzle each filet with extra virgin olive oil, and garnish with fresh parsley, if desired.")
                         .build();
@@ -170,9 +175,12 @@ public abstract class DatabaseHelper extends RoomDatabase {
                     .fallbackToDestructiveMigration() // Xóa và tạo lại DB nếu có thay đổi schema
                     .addCallback(sRoomDatabaseCallback)
                     .build();
+<<<<<<< HEAD
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                     DatabaseHelper.class,
                     DB_NAME).allowMainThreadQueries().addCallback(sRoomDatabaseCallback).build();
+=======
+>>>>>>> 410f8cb39d84375a078a599fc10aebb025042f5c
         }
         return INSTANCE;
     }
