@@ -15,7 +15,7 @@ import java.util.List;
 @Dao
 public interface RecipeDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    long insert(Recipe recipe);
+    Long insert(Recipe recipe);
 
     @Query("DELETE FROM recipe")
     void deleteAll();
@@ -38,7 +38,4 @@ public interface RecipeDao {
 
     @Query("SELECT COUNT(*) FROM recipe WHERE userCreatorId = :userId")
     int countRecipesByUserId(int userId);
-
-    @Query("SELECT * FROM recipe WHERE dishName = :name LIMIT 1")
-    Recipe getRecipeByName(String name);
 }

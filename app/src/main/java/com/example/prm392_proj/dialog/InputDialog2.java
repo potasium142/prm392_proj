@@ -18,48 +18,57 @@ import com.example.prm392_proj.util.InputValidation;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class InputDialog extends AppCompatActivity {
+public class InputDialog2 extends AppCompatActivity {
     Dialog dialog;
     CancelListener cancelListener;
     EnterListener enterListener;
     InputValidation inputValidation = null;
-    TextInputLayout inputLayout;
-    TextInputEditText inputText;
+    InputValidation inputValidation2 = null;
+    TextInputLayout inputLayout, inputLayout2;
+    TextInputEditText inputText, inputText2;
     String label = "Text";
+    String label2 = "Text";
+    String labelTitle = "Text";
 
-    public InputDialog(Context context) {
+    public InputDialog2(Context context) {
         init(context);
     }
 
-    public InputDialog(Context context, String defaultText) {
+    public InputDialog2(Context context, String labelTitle) {
         init(context);
-        inputText.setText(defaultText);
-    }
-
-    public InputDialog(Context context, String defaultText, String label) {
-        init(context);
-        inputText.setText(defaultText);
-        this.label = label;
+        this.labelTitle = labelTitle;
         TextView title = dialog.findViewById(R.id.title);
-        title.setText("Enter " + label);
-        inputLayout.setHint("Enter " + label);
+        title.setText("Enter " +labelTitle);
+    }
+
+    public InputDialog2(Context context, String defaultText, String defaultText2, String labelTitle) {
+        init(context);
+        inputText.setText(defaultText);
+        inputText2.setText(defaultText2);
+        this.labelTitle = labelTitle;
+        TextView title = dialog.findViewById(R.id.title);
+        title.setText("Enter " +labelTitle);
     }
 
     private void init(Context context) {
         cancelListener = () -> {
 
         };
-        enterListener = text -> {
+        enterListener = (text, text2) -> {
 
         };
 
         dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_input);
+        dialog.setContentView(R.layout.dialog_2_input);
 
         inputLayout = dialog.findViewById(R.id.inputLayout);
         inputText = dialog.findViewById(R.id.inputText);
         inputLayout.setHint("Enter text");
+
+        inputLayout2 = dialog.findViewById(R.id.inputLayout2);
+        inputText2 = dialog.findViewById(R.id.inputText2);
+        inputLayout2.setHint("Enter text");
 
         Window window = dialog.getWindow();
 
@@ -80,6 +89,10 @@ public class InputDialog extends AppCompatActivity {
         enterButton.setOnClickListener(v1 -> {
             EditText dialogEditText = dialog.findViewById(R.id.inputText);
             String text = "";
+
+            EditText dialogEditText2 = dialog.findViewById(R.id.inputText2);
+            String text2 = "";
+
             boolean isOk = false;
             if (inputValidation == null) {
                 text = dialogEditText.getText().toString();
@@ -91,20 +104,34 @@ public class InputDialog extends AppCompatActivity {
                 }
             }
 
-            if (isOk) {
-                enterListener.onEnter(text);
+            boolean isOk2 = false;
+            if (inputValidation2 == null) {
+                text2 = dialogEditText2.getText().toString();
+                isOk2 = true;
+            } else {
+                if (inputValidation2.validate()) {
+                    text2 = dialogEditText2.getText().toString();
+                    isOk2 = true;
+                }
+            }
+
+            if (isOk && isOk2) {
+                enterListener.onEnter(text, text2);
                 dialog.dismiss();
             }
         });
     }
 
-    public void setValidation(InputValidation inputValidation) {
+    public void setValidation(InputValidation inputValidation, InputValidation inputValidation2) {
         this.inputValidation = inputValidation;
         this.setLabel(inputValidation.getLabel());
-        TextView title = dialog.findViewById(R.id.title);
-        title.setText("Enter " + label);
         inputLayout.setHint("Enter " + label);
         inputValidation.setInputLayout(inputLayout, inputText);
+
+        this.inputValidation2 = inputValidation2;
+        this.setLabel2(inputValidation2.getLabel());
+        inputLayout2.setHint("Enter " + label2);
+        inputValidation2.setInputLayout(inputLayout2, inputText2);
     }
 
     public void setContentView(@LayoutRes int layoutResID) {
@@ -117,6 +144,10 @@ public class InputDialog extends AppCompatActivity {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public void setLabel2(String label) {
+        this.label2 = label;
     }
 
     public void setOnCancelListener(CancelListener cancelListener) {
@@ -134,7 +165,7 @@ public class InputDialog extends AppCompatActivity {
 
     public interface EnterListener {
 
-        void onEnter(String text);
+        void onEnter(String text, String text2);
 
     }
 }

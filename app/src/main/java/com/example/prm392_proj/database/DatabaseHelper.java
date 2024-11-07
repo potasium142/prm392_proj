@@ -74,7 +74,8 @@ public abstract class DatabaseHelper extends RoomDatabase {
                         .creationDate(tempDate)
 
                         .build();
-                recipeDao.insert(recipe);
+                Long recipeId = recipeDao.insert(recipe);
+                recipe.setId(Integer.parseInt(String.valueOf(recipeId)));
 
                 Ingredient ingredient = Ingredient.builder()
                         .recipeId(recipe.getId())
@@ -164,7 +165,8 @@ public abstract class DatabaseHelper extends RoomDatabase {
                         .description("This Mediterranean baked cod with lemon, deliciously seasoned with fresh Mediterranean herbs, garlic, and lemon, is ready in 25 minutes, start to finish. Serve with your favorite potato dish, and a green vegetable or salad, and your meal is done.")
                         .creationDate(new Date())
                         .build();
-                recipeDao.insert(recipe2);
+                recipeId = recipeDao.insert(recipe2);
+                recipe2.setId(Integer.parseInt(String.valueOf(recipeId)));
 
                 Ingredient ingredient2 = Ingredient.builder()
                         .recipeId(recipe2.getId())
