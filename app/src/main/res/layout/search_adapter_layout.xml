@@ -12,13 +12,14 @@
         tools:srcCompat="@drawable/background_demo" />
 
     <TextView
-        android:id="@+id/dishNametextView"
+        android:id="@+id/textViewDishName"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:text="Item"
         android:textSize="18sp"
         android:textColor="@android:color/black" />
+
     <TextView
         android:id="@+id/dishCreatortextView"
         android:layout_width="200dp"

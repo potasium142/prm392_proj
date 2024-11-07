@@ -73,7 +73,6 @@ public abstract class DatabaseHelper extends RoomDatabase {
                         .userCreatorId(user.getId())
                         .totalTime(10)
                         .dishName("Mediterranean Baked Cod with Lemon")
-
                         .picture("https://www.allrecipes.com/thmb/1blq_he4MHCz2acTU7arELCnGrI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8576313_Mediterranean-Baked-Cod-with-Lemon_Brenda-Venable_4x3-b34ff9cd504b4aca9ba74d5ca8ba0c4d.jpg")
                         .description("This Mediterranean baked cod with lemon, deliciously seasoned with fresh Mediterranean herbs, garlic, and lemon, is ready in 25 minutes, start to finish. Serve with your favorite potato dish, and a green vegetable or salad, and your meal is done.")
                         .creationDate(tempDate)

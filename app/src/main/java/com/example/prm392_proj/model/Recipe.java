@@ -37,5 +37,4 @@ public class Recipe implements Serializable {
         this.description = description;
         this.creationDate = new Date();
     }
-
 }
