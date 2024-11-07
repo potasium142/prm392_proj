@@ -25,10 +25,11 @@ public class RecipeRepository {
         return mAllRecipes;
     }
 
-    public void insert(Recipe recipe) {
-        DatabaseHelper.databaseWriteExecutor.execute(() -> {
-            mRecipeDao.insert(recipe);
-        });
+    public Long insert(Recipe recipe) {
+        return mRecipeDao.insert(recipe);
+//        DatabaseHelper.databaseWriteExecutor.execute(() -> {
+//            mRecipeDao.insert(recipe);
+//        });
     }
 
     public void update(Recipe recipe) {

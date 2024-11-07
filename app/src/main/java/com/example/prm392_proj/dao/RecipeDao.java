@@ -15,7 +15,7 @@ import java.util.List;
 @Dao
 public interface RecipeDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(Recipe recipe);
+    Long insert(Recipe recipe);
 
     @Query("DELETE FROM recipe")
     void deleteAll();

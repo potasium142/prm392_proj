@@ -2,6 +2,7 @@ package com.example.prm392_proj.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,8 +11,15 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.prm392_proj.R;
+import com.example.prm392_proj.model.Recipe;
+import com.example.prm392_proj.repository.RecipeRepository;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 public class TestScreenActivity extends AppCompatActivity {
+    private RecipeRepository recipeRepository; // Declare RecipeRepository
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,5 +56,58 @@ public class TestScreenActivity extends AppCompatActivity {
         var allRecipesButton = findViewById(R.id.all_recipes_button);
         var allRecipesIntent = new Intent(this, RecipeListEditableActivity.class);
         allRecipesButton.setOnClickListener(v -> startActivity(allRecipesIntent));
+
+
+        var addRecipeButton = findViewById(R.id.add_recipe_button);
+        var addRecipeIntent = new Intent(this, RecipeAddNewActivity.class);
+        addRecipeButton.setOnClickListener(v -> startActivity(addRecipeIntent));
+
+
+        var notificationJumpBtn = findViewById(R.id.notificationJump);
+        var notificationJumpIntent = new Intent(this, NotificationActivity.class);
+        notificationJumpBtn.setOnClickListener(v -> startActivity(notificationJumpIntent));
+
+        var showRecipeJumpBtn = findViewById(R.id.show_recipe_jump);
+        var showRecipeJumpBtnIntent = new Intent(this, TestActivity.class);
+        showRecipeJumpBtn.setOnClickListener(v -> startActivity(showRecipeJumpBtnIntent));
+
+        // Initialize the RecipeRepository
+        recipeRepository = new RecipeRepository(getApplication());
+
+        // Observe the recipe data from the repository and log it
+        recipeRepository.getAllRecipes().observe(this, recipes -> {
+            if (recipes != null) {
+                logAllRecipes(recipes); // Call method to log the list of recipes
+            }
+        });
     }
+
+    // Method to log all recipes from the repository
+
+
+    private void logAllRecipes(List<Recipe> recipes) {
+        Log.d("TestScreenActivity", "Listing all recipes:");
+
+        // Set the desired date format
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",
+                java.util.Locale.getDefault());
+
+        for (Recipe recipe : recipes) {
+            Date recipeDate = recipe.getCreationDate();
+
+            if (recipeDate != null) {
+                // Format the creation date if it's not null
+                String formattedDate = dateFormat.format(recipeDate);
+                Log.d("TestScreenActivity",
+                        "Recipe ID: " + recipe.getId() + ", Name: " + recipe.getDishName() +
+                                ", Date: " + formattedDate);
+            } else {
+                // Log a message if the creation date is null
+                Log.d("TestScreenActivity",
+                        "Recipe ID: " + recipe.getId() + ", Name: " + recipe.getDishName() +
+                                ", Date: Not Available");
+            }
+        }
+    }
+
 }

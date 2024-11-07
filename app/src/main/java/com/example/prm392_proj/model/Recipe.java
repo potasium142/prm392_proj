@@ -24,6 +24,7 @@ public class Recipe implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private int userCreatorId;
+    private int totalTime;
     private String dishName;
     private String picture;
     private String description;
@@ -36,5 +37,4 @@ public class Recipe implements Serializable {
         this.description = description;
         this.creationDate = new Date();
     }
-
 }

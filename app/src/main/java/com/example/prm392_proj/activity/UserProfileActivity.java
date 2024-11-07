@@ -17,6 +17,8 @@ import com.example.prm392_proj.database.DatabaseHelper;
 import com.example.prm392_proj.dao.RecipeDao;
 import com.example.prm392_proj.model.User;
 
+import org.w3c.dom.Text;
+
 public class UserProfileActivity extends AppCompatActivity {
 
     private TextView textViewProfileName;
@@ -56,6 +58,14 @@ public class UserProfileActivity extends AppCompatActivity {
         ImageView backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(UserProfileActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+        // Thiết lập nút đăng xuất
+        TextView createdRecipes = findViewById(R.id.createdRecipes);
+        createdRecipes.setOnClickListener(v -> {
+            Intent intent = new Intent(UserProfileActivity.this, RecipeListEditableActivity.class);
             startActivity(intent);
             finish();
         });
