@@ -27,10 +27,6 @@ import com.example.prm392_proj.model.Rate;
 import com.example.prm392_proj.model.Recipe;
 import com.example.prm392_proj.model.User;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 410f8cb39d84375a078a599fc10aebb025042f5c
 @Database(entities = {Bookmark.class, Ingredient.class, Instruction.class, Rate.class, Recipe.class, User.class}, version = 12, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class DatabaseHelper extends RoomDatabase {
@@ -73,10 +69,6 @@ public abstract class DatabaseHelper extends RoomDatabase {
                         .dishName("Mediterranean Baked Cod with Lemon")
                         .picture("https://www.allrecipes.com/thmb/1blq_he4MHCz2acTU7arELCnGrI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8576313_Mediterranean-Baked-Cod-with-Lemon_Brenda-Venable_4x3-b34ff9cd504b4aca9ba74d5ca8ba0c4d.jpg")
                         .description("This Mediterranean baked cod with lemon, deliciously seasoned with fresh Mediterranean herbs, garlic, and lemon, is ready in 25 minutes, start to finish. Serve with your favorite potato dish, and a green vegetable or salad, and your meal is done.")
-<<<<<<< HEAD
-                        .time("20")
-=======
->>>>>>> 410f8cb39d84375a078a599fc10aebb025042f5c
                         .creationDate(tempDate)
 
                         .build();
@@ -175,12 +167,9 @@ public abstract class DatabaseHelper extends RoomDatabase {
                     .fallbackToDestructiveMigration() // Xóa và tạo lại DB nếu có thay đổi schema
                     .addCallback(sRoomDatabaseCallback)
                     .build();
-<<<<<<< HEAD
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                     DatabaseHelper.class,
                     DB_NAME).allowMainThreadQueries().addCallback(sRoomDatabaseCallback).build();
-=======
->>>>>>> 410f8cb39d84375a078a599fc10aebb025042f5c
         }
         return INSTANCE;
     }
