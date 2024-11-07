@@ -40,7 +40,7 @@ public class RecipeIngredient extends AppCompatActivity {
         // Khởi tạo các view
         dishTitle = findViewById(R.id.dishTitle);
         dishImage = findViewById(R.id.foodImage);
-        timeView = findViewById(R.id.time);
+        timeView = findViewById(R.id.showTime);
         userName = findViewById(R.id.userChannel);
         countItem = findViewById(R.id.countItem);
 
@@ -48,7 +48,7 @@ public class RecipeIngredient extends AppCompatActivity {
         // Lấy dữ liệu từ Intent
         String dishName = getIntent().getStringExtra("DISH_NAME");
         String imageUrl = getIntent().getStringExtra("IMAGE_URL");
-        String time = getIntent().getStringExtra("TIME");
+        int totalTime = getIntent().getIntExtra("TOTAL_TIME", 1);
         int recipeId = getIntent().getIntExtra("RECIPE_ID", -1);
         int userId = getIntent().getIntExtra("USER_ID", -1);
 
@@ -62,11 +62,12 @@ public class RecipeIngredient extends AppCompatActivity {
 
 
         // Hiển thị thời gian
-        if (timeView != null && time != null) {
-            timeView.setText(time);
+        if (totalTime != -1) {
+            timeView.setText(totalTime + " mins");
         } else {
-            Log.e(TAG, "Time is missing in intent extras");
+            Log.e(TAG, "Total time is missing in intent extras");
         }
+
 
 
         // Hiển thị hình ảnh món ăn
@@ -151,7 +152,7 @@ public class RecipeIngredient extends AppCompatActivity {
             Intent intent = new Intent(RecipeIngredient.this, RecipeProcedure.class);
             intent.putExtra("RECIPE_ID", recipeId);
             intent.putExtra("IMAGE_URL", imageUrl);
-            intent.putExtra("TIME", time);
+            intent.putExtra("TIME", totalTime);
             intent.putExtra("DISH_NAME", dishName);
             intent.putExtra("USER_ID", userId);
             startActivity(intent);
@@ -164,7 +165,7 @@ public class RecipeIngredient extends AppCompatActivity {
             Intent intent = new Intent(RecipeIngredient.this, ShowAllRecipeAndProcedureActivity.class);
             intent.putExtra("RECIPE_ID", recipeId);
             intent.putExtra("IMAGE_URL", imageUrl);
-            intent.putExtra("TIME", time);
+            intent.putExtra("TIME", totalTime);
             intent.putExtra("DISH_NAME", dishName);
             intent.putExtra("USER_ID", userId);
             startActivity(intent);

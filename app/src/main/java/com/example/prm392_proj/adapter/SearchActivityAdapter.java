@@ -121,7 +121,7 @@ public class SearchActivityAdapter extends RecyclerView.Adapter<SearchActivityAd
 
         public ViewHolder(View itemView) {
             super(itemView);
-            dishNameTextView = itemView.findViewById(R.id.dishNametextView);
+            dishNameTextView = itemView.findViewById(R.id.textViewDishName);
             creatorTextView = itemView.findViewById(R.id.dishCreatortextView);
             recipeImageView = itemView.findViewById(R.id.recipeImage);
         }

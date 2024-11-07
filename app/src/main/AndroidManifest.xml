@@ -48,6 +48,9 @@
             android:name=".activity.RecipeAddNewActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.TestActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.SearchActivity"
             android:exported="false" />
         <activity
