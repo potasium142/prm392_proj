@@ -43,4 +43,7 @@ public interface UserDao {
 
     @Query("SELECT * FROM User WHERE id = :id")
     User getUserById(int id);
+
+    @Query("SELECT * FROM User WHERE username = :username")
+    User getUserByUsername(String username);
 }

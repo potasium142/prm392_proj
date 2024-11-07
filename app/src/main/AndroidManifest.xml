@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
 
     <application
         android:allowBackup="true"
@@ -31,6 +36,9 @@
             android:exported="false" />
         <activity
             android:name=".activity.RecipeEditableActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.RecipeAddNewActivity"
             android:exported="false" />
         <activity
             android:name=".activity.SearchActivity"
