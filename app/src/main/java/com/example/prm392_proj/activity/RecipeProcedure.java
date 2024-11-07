@@ -45,7 +45,7 @@ public class RecipeProcedure extends AppCompatActivity {
         int recipeId = getIntent().getIntExtra("RECIPE_ID", -1);
         String dishName = getIntent().getStringExtra("DISH_NAME");
         String imageUrl = getIntent().getStringExtra("IMAGE_URL");
-        String timeText = getIntent().getStringExtra("TIME");
+        int totalTime = getIntent().getIntExtra("TOTAL_TIME", 1);
         int userId = getIntent().getIntExtra("USER_ID", -1);
 
 
@@ -64,8 +64,11 @@ public class RecipeProcedure extends AppCompatActivity {
             Log.e(TAG, "Dish name not found in intent extras");
         }
 
-        if (timeText != null) {
-            timeView.setText(timeText);
+        // Hiển thị thời gian
+        if (totalTime != -1) {
+            timeView.setText(totalTime + " mins");
+        } else {
+            Log.e(TAG, "Total time is missing in intent extras");
         }
 
         if (imageUrl != null && !imageUrl.isEmpty()) {
@@ -137,7 +140,7 @@ public class RecipeProcedure extends AppCompatActivity {
             Intent intent = new Intent(RecipeProcedure.this, RecipeIngredient.class);
             intent.putExtra("RECIPE_ID", recipeId);
             intent.putExtra("IMAGE_URL", imageUrl);
-            intent.putExtra("TIME", timeText);
+            intent.putExtra("TIME", totalTime);
             intent.putExtra("DISH_NAME", dishName);
             intent.putExtra("USER_ID", userId);
             startActivity(intent);
@@ -150,7 +153,7 @@ public class RecipeProcedure extends AppCompatActivity {
             Intent intent = new Intent(RecipeProcedure.this, ShowAllRecipeAndProcedureActivity.class);
             intent.putExtra("RECIPE_ID", recipeId);
             intent.putExtra("IMAGE_URL", imageUrl);
-            intent.putExtra("TIME", timeText);
+            intent.putExtra("TIME", totalTime);
             intent.putExtra("DISH_NAME", dishName);
             intent.putExtra("USER_ID", userId);
             startActivity(intent);

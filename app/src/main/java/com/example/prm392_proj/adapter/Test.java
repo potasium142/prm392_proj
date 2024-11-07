@@ -56,14 +56,14 @@ public class Test extends RecyclerView.Adapter<Test.ViewHolder> {
             intent.putExtra("DISH_NAME", current.getDishName());
             intent.putExtra("RECIPE_ID", current.getId());
             intent.putExtra("IMAGE_URL", current.getPicture());
-            intent.putExtra("TIME", current.getTime());
+            intent.putExtra("TOTAL_TIME", current.getTotalTime());
             intent.putExtra("USER_ID", current.getUserCreatorId());
 
             // Ghi nhật ký để kiểm tra dữ liệu trước khi truyền
             Log.d("TestAdapter", "Dish Name: " + current.getDishName());
             Log.d("TestAdapter", "Recipe ID: " + current.getId());
             Log.d("TestAdapter", "Image URL: " + current.getPicture());
-            Log.d("TestAdapter", "Time: " + current.getTime());
+            Log.d("TestAdapter", "Time: " + current.getTotalTime());
             Log.d("TestAdapter", "User ID: " + current.getUserCreatorId());
 
             context.startActivity(intent);
