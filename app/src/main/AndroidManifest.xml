@@ -19,6 +19,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PRM392_Proj"
         tools:targetApi="31">
+        <activity android:name=".activity.ShowAllRecipeAndProcedureActivity"
+            android:exported="false" />
+        <activity android:name=".activity.TestActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.NotificationActivity"
             android:exported="false" />
@@ -42,6 +46,9 @@
             android:exported="false" />
         <activity
             android:name=".activity.RecipeAddNewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.TestActivity"
             android:exported="false" />
         <activity
             android:name=".activity.SearchActivity"

@@ -35,6 +35,13 @@ public class HomeActivity extends AppCompatActivity {
 
         var avt = findViewById(R.id.avt);
 
+        var addButton = findViewById(R.id.floatingActionButton);
+
+        addButton.setOnClickListener(v -> {
+            var addIntent = new Intent(HomeActivity.this, RecipeAddNewActivity.class);
+            startActivity(addIntent);
+        });
+
         avt.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, UserProfileActivity.class);
             intent.putExtra("PROFILE_NAME", username);
