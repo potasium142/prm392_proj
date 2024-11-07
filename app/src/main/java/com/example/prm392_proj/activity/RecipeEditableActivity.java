@@ -1,10 +1,15 @@
 package com.example.prm392_proj.activity;
 
 import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
+import android.webkit.MimeTypeMap;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,15 +29,18 @@ import com.example.prm392_proj.repository.IngredientRepository;
 import com.example.prm392_proj.repository.InstructionRepository;
 import com.example.prm392_proj.repository.RecipeRepository;
 import com.example.prm392_proj.repository.UserRepository;
+import com.example.prm392_proj.s3.S3ClientProvider;
 import com.example.prm392_proj.util.InputValidation;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.prm392_proj.util.RandomAlphaDigit;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.List;
 
 public class RecipeEditableActivity extends AppCompatActivity {
+    public static final int REQUEST_IMAGE_PICK = 1001;
     UserRepository userRepository;
     Recipe recipe;
     TextView dishTittle;
@@ -76,6 +84,13 @@ public class RecipeEditableActivity extends AppCompatActivity {
         InstructionRepository instructionRepository = new InstructionRepository(this.getApplication());
         List<Instruction> instructions = instructionRepository.getAllInstructionsByRecipeIdSync(
                 recipe.getId());
+
+        ImageButton changeImageButton = findViewById(R.id.changeImageButton);
+        changeImageButton.setOnClickListener(v -> {
+            Intent intent1 = new Intent(Intent.ACTION_PICK);
+            intent1.setType("image/*");
+            startActivityForResult(intent1, REQUEST_IMAGE_PICK);
+        });
 
         var adapter = new RecipeEditableViewPagerAdapter(this, ingredients, instructions);
         TabLayout tabLayout = findViewById(R.id.tabLayout);
@@ -164,5 +179,68 @@ public class RecipeEditableActivity extends AppCompatActivity {
 
         inputDialog.show();
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("onActivityResult", "requestCode: " + requestCode + ", resultCode: " + resultCode);
+        if (requestCode == REQUEST_IMAGE_PICK && resultCode == RESULT_OK) {
+            if (data != null) {
+                Uri imageUri = data.getData();
+
+                String extension;
+
+                //Check uri format to avoid null
+                if (imageUri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
+                    //If scheme is a content
+                    final MimeTypeMap mime = MimeTypeMap.getSingleton();
+                    extension = mime.getExtensionFromMimeType(this.getContentResolver()
+                            .getType(imageUri));
+                } else {
+                    //If scheme is a File
+                    //This will replace white spaces with %20 and also other special characters. This will avoid returning null values on file name with spaces and special characters.
+                    extension = MimeTypeMap.getFileExtensionFromUrl(Uri.fromFile(new File(imageUri.getPath()))
+                            .toString());
+
+                }
+
+                String key = RandomAlphaDigit.generateRandomAlphaDigit(10);
+                key = key + "." + extension;
+                S3ClientProvider.uploadImageToSpaceInBackground(this,
+                        imageUri,
+                        "",
+                        key,
+                        new S3ClientProvider.UploadCallback() {
+                            @Override
+                            public void onSuccess(String imageUrl) {
+                                Handler handler = new Handler(Looper.getMainLooper());
+
+// Inside your background thread
+                                handler.post(() -> {
+                                    recipe.setPicture(imageUrl);
+                                    ImageView dishImageView = findViewById(R.id.foodImage);
+                                    Picasso.get().load(imageUrl).into(dishImageView);
+
+                                    sharedPreferences.edit().putString("changed", "changed").apply();
+                                });
+
+                            }
+
+                            @Override
+                            public void onFailure(Exception e) {
+                                Handler handler = new Handler(Looper.getMainLooper());
+
+// Inside your background thread
+                                handler.post(() -> {
+                                    Toast.makeText(RecipeEditableActivity.this,
+                                            "Failed to upload image",
+                                            Toast.LENGTH_SHORT).show();
+                                });
+                            }
+                        });
+            }
+        }
+    }
+
 }
 

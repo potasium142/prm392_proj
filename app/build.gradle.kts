@@ -36,6 +36,8 @@ android {
 
 dependencies {
     implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation ("com.amazonaws:aws-android-sdk-s3:2.22.5")
+    implementation ("com.amazonaws:aws-android-sdk-core:2.22.5")
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.annotation)
