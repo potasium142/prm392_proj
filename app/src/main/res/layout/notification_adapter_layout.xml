@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/notification_bubble_background"
+    android:layout_margin="8dp">
+
+    <!-- Top-right button to mark as read -->
+    <ImageButton
+        android:id="@+id/markAsReadButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="325dp"
+        android:src="@drawable/ic_checkmark"
+        android:contentDescription="Mark as Read"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent"/>
+
+    <TextView
+        android:id="@+id/notifyTitletextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Item"
+        android:textSize="18sp"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/notifyContenttextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Item"
+        android:textSize="16sp"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/notifyDatetextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Item"
+        android:textSize="14sp"
+        android:textColor="@android:color/darker_gray" />
+
+</LinearLayout>
