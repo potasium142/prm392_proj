@@ -16,11 +16,13 @@ import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.example.prm392_proj.dao.CommentDao;
 import com.example.prm392_proj.dao.IngredientDao;
 import com.example.prm392_proj.dao.InstructionDao;
 import com.example.prm392_proj.dao.RecipeDao;
 import com.example.prm392_proj.dao.UserDao;
 import com.example.prm392_proj.model.Bookmark;
+import com.example.prm392_proj.model.Comment;
 import com.example.prm392_proj.model.Ingredient;
 import com.example.prm392_proj.model.Instruction;
 import com.example.prm392_proj.model.Rate;
@@ -28,7 +30,7 @@ import com.example.prm392_proj.model.Recipe;
 import com.example.prm392_proj.model.User;
 
 
-@Database(entities = {Bookmark.class, Ingredient.class, Instruction.class, Rate.class, Recipe.class, User.class}, version = 12, exportSchema = false)
+@Database(entities = {Bookmark.class, Ingredient.class, Instruction.class, Rate.class, Recipe.class, User.class, Comment.class}, version = 12, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class DatabaseHelper extends RoomDatabase {
     private static final String DB_NAME = "PRM392_final_project";
@@ -46,6 +48,7 @@ public abstract class DatabaseHelper extends RoomDatabase {
                 IngredientDao ingredientDao = INSTANCE.ingredientDao();
                 InstructionDao instructionDao = INSTANCE.instructionDao();
                 UserDao userDao = INSTANCE.userDAO();
+                CommentDao commentDao = INSTANCE.commentDao();
 
                 User user = User.builder()
                         .username("admin")
@@ -242,6 +245,7 @@ public abstract class DatabaseHelper extends RoomDatabase {
         }
     };
 
+
     public static DatabaseHelper getInstance(Context context) {
         if (INSTANCE == null) {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
@@ -258,4 +262,7 @@ public abstract class DatabaseHelper extends RoomDatabase {
     public abstract IngredientDao ingredientDao();
 
     public abstract InstructionDao instructionDao();
+
+    public abstract CommentDao commentDao();
+
 }
