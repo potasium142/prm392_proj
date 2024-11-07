@@ -54,6 +54,11 @@
             android:name=".activity.SearchActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.ReviewActivity"
+            android:exported="false" />
+        <activity android:name=".activity.CommentDetailActivity"
+            android:exported="false"/>
+        <activity
             android:name=".activity.TestScreenActivity"
             android:exported="true">
 <!--            <intent-filter>-->

@@ -9,11 +9,20 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import com.example.prm392_proj.dao.CommentDao;
 import com.example.prm392_proj.dao.IngredientDao;
 import com.example.prm392_proj.dao.InstructionDao;
 import com.example.prm392_proj.dao.RecipeDao;
 import com.example.prm392_proj.dao.UserDao;
 import com.example.prm392_proj.model.Bookmark;
+import com.example.prm392_proj.model.Comment;
 import com.example.prm392_proj.model.Ingredient;
 import com.example.prm392_proj.model.Instruction;
 import com.example.prm392_proj.model.Rate;
@@ -27,7 +36,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-@Database(entities = {Bookmark.class, Ingredient.class, Instruction.class, Rate.class, Recipe.class, User.class}, version = 12, exportSchema = false)
+@Database(entities = {Bookmark.class, Ingredient.class, Instruction.class, Rate.class, Recipe.class, User.class, Comment.class}, version = 12, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class DatabaseHelper extends RoomDatabase {
     private static final String DB_NAME = "PRM392_final_project";
@@ -45,6 +54,7 @@ public abstract class DatabaseHelper extends RoomDatabase {
                 IngredientDao ingredientDao = INSTANCE.ingredientDao();
                 InstructionDao instructionDao = INSTANCE.instructionDao();
                 UserDao userDao = INSTANCE.userDAO();
+                CommentDao commentDao = INSTANCE.commentDao();
 
                 User user = User.builder()
                         .username("admin")
@@ -64,14 +74,13 @@ public abstract class DatabaseHelper extends RoomDatabase {
                 }
 
 
+
                 Recipe recipe = Recipe.builder()
                         .userCreatorId(user.getId())
                         .totalTime(10)
                         .dishName("Mediterranean Baked Cod with Lemon")
-                        .picture(
-                                "https://www.allrecipes.com/thmb/1blq_he4MHCz2acTU7arELCnGrI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8576313_Mediterranean-Baked-Cod-with-Lemon_Brenda-Venable_4x3-b34ff9cd504b4aca9ba74d5ca8ba0c4d.jpg")
-                        .description(
-                                "This Mediterranean baked cod with lemon, deliciously seasoned with fresh Mediterranean herbs, garlic, and lemon, is ready in 25 minutes, start to finish. Serve with your favorite potato dish, and a green vegetable or salad, and your meal is done.")
+                        .picture("https://www.allrecipes.com/thmb/1blq_he4MHCz2acTU7arELCnGrI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8576313_Mediterranean-Baked-Cod-with-Lemon_Brenda-Venable_4x3-b34ff9cd504b4aca9ba74d5ca8ba0c4d.jpg")
+                        .description("This Mediterranean baked cod with lemon, deliciously seasoned with fresh Mediterranean herbs, garlic, and lemon, is ready in 25 minutes, start to finish. Serve with your favorite potato dish, and a green vegetable or salad, and your meal is done.")
                         .creationDate(tempDate)
 
                         .build();
@@ -160,6 +169,7 @@ public abstract class DatabaseHelper extends RoomDatabase {
 //                    e.printStackTrace();
 //                    tempDate = new Date(); // fallback to current date if parsing fails
 //                }
+
 
 
                 Recipe recipe2 = Recipe.builder()
@@ -263,4 +273,7 @@ public abstract class DatabaseHelper extends RoomDatabase {
     public abstract IngredientDao ingredientDao();
 
     public abstract InstructionDao instructionDao();
+
+    public abstract CommentDao commentDao();
+
 }
