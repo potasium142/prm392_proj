@@ -3,6 +3,7 @@ package com.example.prm392_proj.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,8 +24,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private Test recipeAdapter;
     private RecyclerView recyclerView;
-    private RecipeRepository recipeRepository;  // Direct reference to the repository
-    private UserRepository userRepository;      // Add UserRepository for the adapter
+    private RecipeRepository recipeRepository;
+    private UserRepository userRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,29 +38,24 @@ public class HomeActivity extends AppCompatActivity {
 
         // Initialize the repositories
         recipeRepository = new RecipeRepository(getApplication());
-        userRepository = new UserRepository(getApplication()); // Initialize UserRepository
+        userRepository = new UserRepository(getApplication());
 
         // Get the LiveData from the repository and observe it
         LiveData<List<Recipe>> allRecipes = recipeRepository.getAllRecipes();
-
-        // Observe the LiveData to update the RecyclerView
-        allRecipes.observe(this, new Observer<List<Recipe>>() {
-            @Override
-            public void onChanged(List<Recipe> recipes) {
-                // Initialize the adapter, passing the context and the necessary repositories
-                recipeAdapter = new Test(HomeActivity.this, userRepository);
-                recipeAdapter.setRecipes(recipes);  // Pass the updated recipe list to the adapter
-                recyclerView.setAdapter(recipeAdapter);
-            }
+        allRecipes.observe(this, recipes -> {
+            // Initialize the adapter, passing the context and the necessary repositories
+            recipeAdapter = new Test(HomeActivity.this, userRepository);
+            recipeAdapter.setRecipes(recipes);
+            recyclerView.setAdapter(recipeAdapter);
         });
 
-        // Example: Setting up the username and other elements
+        // Set up username display
         var sr = getSharedPreferences("vclclgtclgmcs", MODE_PRIVATE);
         TextView usernameText = findViewById(R.id.hello_username);
         var username = sr.getString("USERNAME", "<user>");
         usernameText.setText("Hello " + username);
 
-        // Set up the Avatar click listener
+        // Avatar click listener to open UserProfileActivity
         var avt = findViewById(R.id.avt);
         avt.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, UserProfileActivity.class);
@@ -67,11 +63,18 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Set up the Add New Recipe button
+        // Add New Recipe button
         var addButton = findViewById(R.id.floatingActionButton);
         addButton.setOnClickListener(v -> {
             Intent addIntent = new Intent(HomeActivity.this, RecipeAddNewActivity.class);
             startActivity(addIntent);
+        });
+
+        // Set up SearchView to open SearchActivity on click
+        SearchView searchView = findViewById(R.id.searchView);
+        searchView.setOnClickListener(v -> {
+            Intent searchIntent = new Intent(HomeActivity.this, SearchActivity.class);
+            startActivity(searchIntent);
         });
     }
 }

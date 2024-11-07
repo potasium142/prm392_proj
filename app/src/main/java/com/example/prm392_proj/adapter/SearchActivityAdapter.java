@@ -1,5 +1,6 @@
 package com.example.prm392_proj.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prm392_proj.R;
+import com.example.prm392_proj.activity.RecipeIngredient;
 import com.example.prm392_proj.model.Recipe;
 import com.example.prm392_proj.model.User;
 import com.example.prm392_proj.repository.UserRepository;
@@ -43,16 +45,7 @@ public class SearchActivityAdapter extends RecyclerView.Adapter<SearchActivityAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Recipe recipe = recipes.get(position);
-        holder.dishNameTextView.setText(recipe.getDishName());
-
-        // Get the user by ID
-        User user = userRepository.getUserById(recipe.getUserCreatorId());
-        holder.creatorTextView.setText(user != null ? "by " + user.getProfileName() : "by Unknown Creator");
-
-        // Load image using Picasso
-        Picasso.get()
-                .load(recipe.getPicture()) // URL to the image
-                .into(holder.recipeImageView);
+        holder.bind(recipe, userRepository);
     }
 
     @Override
@@ -125,5 +118,33 @@ public class SearchActivityAdapter extends RecyclerView.Adapter<SearchActivityAd
             creatorTextView = itemView.findViewById(R.id.dishCreatortextView);
             recipeImageView = itemView.findViewById(R.id.recipeImage);
         }
+
+        public void bind(Recipe recipe, UserRepository userRepository) {
+            dishNameTextView.setText(recipe.getDishName());
+
+            // Load user profile name
+            User user = userRepository.getUserById(recipe.getUserCreatorId());
+            String profileName = (user != null) ? user.getProfileName() : "Unknown Creator";
+            creatorTextView.setText("by " + profileName);
+
+            // Load image using Picasso
+            Picasso.get()
+                    .load(recipe.getPicture()) // URL to the image
+                    .into(recipeImageView);
+
+            // Set an OnClickListener for item clicks
+            itemView.setOnClickListener(view -> {
+                // Use context to start a new Activity (Replace `RecipeDetailActivity` with your target activity)
+                Intent intent = new Intent(itemView.getContext(), RecipeIngredient.class);
+//                Intent intent = new Intent(context, RecipeIngredient.class);
+                intent.putExtra("DISH_NAME", recipe.getDishName());
+                intent.putExtra("RECIPE_ID", recipe.getId());
+                intent.putExtra("IMAGE_URL", recipe.getPicture());
+                intent.putExtra("TOTAL_TIME", recipe.getTotalTime());
+                intent.putExtra("USER_ID", recipe.getUserCreatorId());
+                itemView.getContext().startActivity(intent);
+            });
+        }
+
     }
 }
