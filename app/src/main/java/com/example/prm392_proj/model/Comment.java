@@ -23,7 +23,4 @@ public class Comment {
     private String comment;
     private int like;
     private int dislike;
-
-    public Comment(String commentText) {
-    }
 }
