@@ -32,13 +32,6 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
-
-            <ImageView
-                android:id="@+id/menuButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_more_horiz"
-                android:contentDescription="Menu" />
         </LinearLayout>
 
         <LinearLayout
@@ -142,80 +135,37 @@
                     android:gravity="end">
 
                     <TextView
+                        android:id="@+id/countItemIngredient"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10"
                         android:textColor="@color/gray3" />
 
                     <View
                         android:layout_width="5dp"
                         android:layout_height="0dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Items"
-                        android:textColor="@color/gray3" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/partIngredient"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:background="@drawable/bg_gray_rounded_corner"
-            android:padding="12dp"
-            android:gravity="center_vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/serveAndItem">
-
-            <!-- Name and weight section -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="9"
-                    android:text="Carrots"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="500"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray2" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="g"
-                    android:textSize="14sp"
-                    android:textColor="@color/gray2" />
-            </LinearLayout>
-        </LinearLayout>
+            android:layout_height="0dp"
+            android:layout_marginBottom="45dp"
+            app:layout_constraintTop_toBottomOf="@id/serveAndItem"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <!--Start cooking-->
         <LinearLayout
             android:id="@+id/startCooking"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="20dp"
             android:paddingBottom="12dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/partIngredient">
+            app:layout_constraintTop_toBottomOf="@id/recyclerView">
 
             <!-- Serve Column -->
             <LinearLayout
@@ -261,64 +211,23 @@
                     android:gravity="end">
 
                     <TextView
+                        android:id="@+id/countItemInstruction"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10"
                         android:textColor="@color/gray3" />
 
                     <View
                         android:layout_width="5dp"
                         android:layout_height="0dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Steps"
-                        android:textColor="@color/gray3" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewProcudure"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_gray_rounded_corner"
-            android:paddingHorizontal="18dp"
-            android:layout_marginTop="8dp"
-            android:paddingVertical="10dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/startCooking">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Step"
-                    android:textSize="14sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    android:layout_marginRight="5dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1"
-                    android:textSize="14sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="The chicken need to bold and cut it how we can eat them so easy "/>
-        </LinearLayout>
+            android:layout_height="0dp"
+            android:layout_marginBottom="45dp"
+            app:layout_constraintTop_toBottomOf="@id/startCooking"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

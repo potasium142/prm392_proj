@@ -31,5 +31,4 @@ public class Instruction implements Serializable {
         this.index = index;
         this.description = description;
     }
-
 }

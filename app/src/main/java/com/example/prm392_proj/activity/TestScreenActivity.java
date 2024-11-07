@@ -57,10 +57,19 @@ public class TestScreenActivity extends AppCompatActivity {
         var allRecipesIntent = new Intent(this, RecipeListEditableActivity.class);
         allRecipesButton.setOnClickListener(v -> startActivity(allRecipesIntent));
 
+
         var addRecipeButton = findViewById(R.id.add_recipe_button);
         var addRecipeIntent = new Intent(this, RecipeAddNewActivity.class);
         addRecipeButton.setOnClickListener(v -> startActivity(addRecipeIntent));
 
+
+        var notificationJumpBtn = findViewById(R.id.notificationJump);
+        var notificationJumpIntent = new Intent(this, NotificationActivity.class);
+        notificationJumpBtn.setOnClickListener(v -> startActivity(notificationJumpIntent));
+
+        var showRecipeJumpBtn = findViewById(R.id.show_recipe_jump);
+        var showRecipeJumpBtnIntent = new Intent(this, TestActivity.class);
+        showRecipeJumpBtn.setOnClickListener(v -> startActivity(showRecipeJumpBtnIntent));
 
         // Initialize the RecipeRepository
         recipeRepository = new RecipeRepository(getApplication());
@@ -71,7 +80,6 @@ public class TestScreenActivity extends AppCompatActivity {
                 logAllRecipes(recipes); // Call method to log the list of recipes
             }
         });
-
     }
 
     // Method to log all recipes from the repository

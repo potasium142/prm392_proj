@@ -48,6 +48,7 @@ public class RecipeListEditableAdapter extends RecyclerView.Adapter<RecipeListEd
         holder.deleteButton.setOnClickListener(v -> {
             recipeListEditableActivity.deleteRecipe(current);
         });
+        holder.totalTime.setText(String.valueOf(current.getTotalTime()));
         Picasso.get().load(current.getPicture()).into(holder.dishImageView);
     }
 
@@ -57,13 +58,14 @@ public class RecipeListEditableAdapter extends RecyclerView.Adapter<RecipeListEd
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView recipe_name;
+        TextView recipe_name, totalTime;
         Button editButton, deleteButton;
         ImageView dishImageView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             recipe_name = itemView.findViewById(R.id.recipe_name);
+            totalTime = itemView.findViewById(R.id.totalTime);
             editButton = itemView.findViewById(R.id.editButton);
             deleteButton = itemView.findViewById(R.id.deleteButton);
             dishImageView = itemView.findViewById(R.id.recipeImage);
