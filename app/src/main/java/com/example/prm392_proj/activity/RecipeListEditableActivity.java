@@ -64,7 +64,9 @@ public class RecipeListEditableActivity extends AppCompatActivity {
                     recipeRepository.delete(recipe);
                     Snackbar.make(findViewById(android.R.id.content),
                             "Recipe deleted",
-                            Snackbar.LENGTH_SHORT).show();
+                            Snackbar.LENGTH_SHORT).setAction("Undo", v -> {
+                        recipeRepository.insert(recipe);
+                    }).setDuration(5000).show();
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
