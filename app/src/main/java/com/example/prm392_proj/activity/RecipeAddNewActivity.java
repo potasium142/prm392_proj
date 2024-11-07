@@ -34,6 +34,7 @@ import java.util.Date;
 import java.util.List;
 
 public class RecipeAddNewActivity extends AppCompatActivity {
+    public static final int REQUEST_CHANGE_IMAGE = 500;
     UserRepository userRepository;
     Recipe recipe;
     TextView dishTittle;
@@ -91,6 +92,13 @@ public class RecipeAddNewActivity extends AppCompatActivity {
         InstructionRepository instructionRepository = new InstructionRepository(this.getApplication());
         List<Instruction> instructions = instructionRepository.getAllInstructionsByRecipeIdSync(
                 recipe.getId());
+
+        ImageButton changeImageButton = findViewById(R.id.changeImageButton);
+        changeImageButton.setOnClickListener(v -> {
+            Intent intent1 = new Intent(this, EditImageUrlActivity.class);
+            intent1.putExtra("imageUrl", recipe.getPicture());
+            startActivityForResult(intent1, REQUEST_CHANGE_IMAGE);
+        });
 
         var adapter = new RecipeEditableViewPagerAdapter(this, ingredients, instructions);
         TabLayout tabLayout = findViewById(R.id.tabLayout);
@@ -179,6 +187,21 @@ public class RecipeAddNewActivity extends AppCompatActivity {
         inputDialog.setValidation(inputValidation);
 
         inputDialog.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CHANGE_IMAGE && resultCode == RESULT_OK) {
+            if (data != null) {
+                String imageUrl = data.getStringExtra("imageUrl");
+                recipe.setPicture(imageUrl);
+                ImageView dishImageView = findViewById(R.id.foodImage);
+                Picasso.get().load(imageUrl).into(dishImageView);
+
+                sharedPreferences.edit().putString("changed", "changed").apply();
+            }
+        }
     }
 }
 

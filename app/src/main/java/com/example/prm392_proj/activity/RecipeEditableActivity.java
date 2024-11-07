@@ -40,7 +40,8 @@ import java.io.File;
 import java.util.List;
 
 public class RecipeEditableActivity extends AppCompatActivity {
-    public static final int REQUEST_IMAGE_PICK = 1001;
+    public static final int REQUEST_CHANGE_IMAGE = 500;
+
     UserRepository userRepository;
     Recipe recipe;
     TextView dishTittle;
@@ -87,9 +88,9 @@ public class RecipeEditableActivity extends AppCompatActivity {
 
         ImageButton changeImageButton = findViewById(R.id.changeImageButton);
         changeImageButton.setOnClickListener(v -> {
-            Intent intent1 = new Intent(Intent.ACTION_PICK);
-            intent1.setType("image/*");
-            startActivityForResult(intent1, REQUEST_IMAGE_PICK);
+            Intent intent1 = new Intent(this, EditImageUrlActivity.class);
+            intent1.putExtra("imageUrl", recipe.getPicture());
+            startActivityForResult(intent1, REQUEST_CHANGE_IMAGE);
         });
 
         var adapter = new RecipeEditableViewPagerAdapter(this, ingredients, instructions);
@@ -183,61 +184,14 @@ public class RecipeEditableActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("onActivityResult", "requestCode: " + requestCode + ", resultCode: " + resultCode);
-        if (requestCode == REQUEST_IMAGE_PICK && resultCode == RESULT_OK) {
+        if (requestCode == REQUEST_CHANGE_IMAGE && resultCode == RESULT_OK) {
             if (data != null) {
-                Uri imageUri = data.getData();
+                String imageUrl = data.getStringExtra("imageUrl");
+                recipe.setPicture(imageUrl);
+                ImageView dishImageView = findViewById(R.id.foodImage);
+                Picasso.get().load(imageUrl).into(dishImageView);
 
-                String extension;
-
-                //Check uri format to avoid null
-                if (imageUri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
-                    //If scheme is a content
-                    final MimeTypeMap mime = MimeTypeMap.getSingleton();
-                    extension = mime.getExtensionFromMimeType(this.getContentResolver()
-                            .getType(imageUri));
-                } else {
-                    //If scheme is a File
-                    //This will replace white spaces with %20 and also other special characters. This will avoid returning null values on file name with spaces and special characters.
-                    extension = MimeTypeMap.getFileExtensionFromUrl(Uri.fromFile(new File(imageUri.getPath()))
-                            .toString());
-
-                }
-
-                String key = RandomAlphaDigit.generateRandomAlphaDigit(10);
-                key = key + "." + extension;
-                S3ClientProvider.uploadImageToSpaceInBackground(this,
-                        imageUri,
-                        "",
-                        key,
-                        new S3ClientProvider.UploadCallback() {
-                            @Override
-                            public void onSuccess(String imageUrl) {
-                                Handler handler = new Handler(Looper.getMainLooper());
-
-// Inside your background thread
-                                handler.post(() -> {
-                                    recipe.setPicture(imageUrl);
-                                    ImageView dishImageView = findViewById(R.id.foodImage);
-                                    Picasso.get().load(imageUrl).into(dishImageView);
-
-                                    sharedPreferences.edit().putString("changed", "changed").apply();
-                                });
-
-                            }
-
-                            @Override
-                            public void onFailure(Exception e) {
-                                Handler handler = new Handler(Looper.getMainLooper());
-
-// Inside your background thread
-                                handler.post(() -> {
-                                    Toast.makeText(RecipeEditableActivity.this,
-                                            "Failed to upload image",
-                                            Toast.LENGTH_SHORT).show();
-                                });
-                            }
-                        });
+                sharedPreferences.edit().putString("changed", "changed").apply();
             }
         }
     }
